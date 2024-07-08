@@ -19,16 +19,20 @@ onBeforeMount(() => {
         <template v-for="(post, p) in posts" :key="p">
             <Transition name="pos" appear>
                 <div class="post-card gap-0 grid grid-cols-12 border bg-white border-3 shadow-sm mb-4">
-                    <div class="cover sm:col-span-3 col-span-12  bg-cover bg-center h-40 flex items-end relative" >
+                    <div class="cover sm:col-span-3 col-span-12  flex items-end relative" >
                         <img :src="post.cover" alt="Cover" class="object-cover w-full h-full opacity-70 hover:opacity-100 transition-all ease-in-out duration-200 bg-blend-overlay after:block after:absolute after:w-full after:h-full after:bg-violet-400 after:content-['Halo']">
                         <p class="absolute w-full bg-sky-600 bg-opacity-60 text-white text-center text-sm p-1">{{ dayjs(post.created_at).format('DD MMM YYYY')}}</p>
                     </div>
-                    <div class="post sm:col-span-9 col-span-12 p-2">
+                    <div class="post sm:col-span-9 col-span-12 p-4">
                         <Link :href="`/berita/${post.slug}`">
                             <h3 class="font-black text-sky-700 hover:underline tracking-wide mb-2 uppercase">{{ post.title }}</h3>
                         </Link>
+                        <div class="meta my-1 flex gap-1">
+                            <el-tag type="primary">{{ post.type }}</el-tag>
+                            <el-tag type="warning">{{ post.category_id }}</el-tag>
+                        </div>
                         <p class="mb-2">{{ post.content.substring(0, 200) }}</p>
-                        <Link href="#" class="text-sky-600 hover:underline mt-6">Selengkapnya ...</Link>
+                        <Link :href="`/berita/${post.slug}`" class="text-sky-600 hover:underline mt-6">Selengkapnya ...</Link>
                         
                     </div>
                 </div>

@@ -2,8 +2,11 @@
 import { ref, computed } from 'vue'
 import { Head, Link } from '@inertiajs/vue3';
 import { Icon } from '@iconify/vue';
+import menus from '@/datas/menu.json'
 
 const showDrawer = ref(false)
+
+const items = computed(() => menus)
 </script>
 
 <template>
@@ -18,7 +21,24 @@ const showDrawer = ref(false)
             </Link>
             <nav class="navigasi flex items-center gap-2">
                 <div class="large-nav md:flex items-center justify-end flex-wrap uppercase hidden">
-                    <Link class="px-4 py-2 mt-2 text-sm font-semibold hover:bg-sky-100 rounded hover:shadow-outline" href="/">
+                    <template v-for="(menu, m) in items" :key="m">
+                        <Link v-if="menu.children.length < 1" :href="menu.url" class="px-4 py-2 mt-2 text-sm font-semibold hover:bg-sky-100 rounded hover:shadow-outline">{{ menu.label }}</Link>
+                        <el-popover v-if="menu.children.length > 0" width="auto">
+                            <template #reference>
+                                <Link class="px-4 py-2 mt-2 text-sm font-semibold hover:bg-sky-100 rounded hover:shadow-outline flex items-start gap-1 justify-between" href="#">
+                                    {{ menu.label }}
+                                    <Icon icon="mdi:menu-down" class="text-lg" />
+                                </Link>
+                            </template>
+                            <ol class="uppercase text-black">
+                                <li v-for="(sub, s) in menu.children" :key="s" class="p-2 hover:bg-sky-100 hover:cursor-pointer">
+                                    <Link :href="sub.url">{{ sub.label }}</Link>
+                                </li>
+                            </ol>
+                        </el-popover>
+                    </template>
+
+                    <!-- <Link class="px-4 py-2 mt-2 text-sm font-semibold hover:bg-sky-100 rounded hover:shadow-outline" href="/">
                         Beranda
                     </Link>
                     <el-popover >
@@ -78,7 +98,7 @@ const showDrawer = ref(false)
                                 <Link href="#">Paket Wisata</Link>
                             </li>
                         </ol>
-                    </el-popover>
+                    </el-popover> -->
                 </div>
                 <Icon icon="mdi:menu" class="text-2xl hover:cursor-pointer" @click="showDrawer = !showDrawer" />
             </nav>

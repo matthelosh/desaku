@@ -1,0 +1,79 @@
+[
+    {
+        "label": "Beranda",
+        "url": "/",
+        "children": []
+    },
+    {
+        "label": "Profil Desa",
+        "url": "#",
+        "children": [
+            {
+                "label": "Sejarah",
+                "url": "/profil/sejarah"
+            },
+            {
+                "label": "Visi Misi",
+                "url": "/profil/visi"
+            },
+            {
+                "label": "Struktur Organisasi",
+                "url": "/profil/organisasi"
+            }
+        ]
+    },
+    {
+        "label": "Berita",
+        "url": "#",
+        "children": [
+            {
+                "label": "Semua",
+                "url": "/berita"
+            },
+            {
+                "label": "Kegiatan",
+                "url": "/berita/kegiatan"
+            },
+            {
+                "label": "Musyawarah",
+                "url": "/berita/musyawarah"
+            }
+        ]
+    },
+    {
+        "label": "Produk Unggulan",
+        "url": "#",
+        "children": [
+            {
+                "label": "Semua",
+                "url": "/produk"
+            },
+            {
+                "label": "Kegiatan",
+                "url": "/berita/kegiatan"
+            },
+            {
+                "label": "Musyawarah",
+                "url": "/berita/musyawarah"
+            }
+        ]
+    },
+    {
+        "label": "Potensi Wisata",
+        "url": "#",
+        "children": [
+            {
+                "label": "Semua",
+                "url": "/wisata"
+            },
+            {
+                "label": "Kegiatan",
+                "url": "/berita/kegiatan"
+            },
+            {
+                "label": "Musyawarah",
+                "url": "/berita/musyawarah"
+            }
+        ]
+    }
+]

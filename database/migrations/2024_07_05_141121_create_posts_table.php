@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title', 191);
             $table->string('slug', 191);
             $table->string('category_id', 30)->default('Berita');
+            $table->enum('type', ['post', 'page'])->default('post');
             $table->string('cover', 191)->nullable();
             $table->text('content');
             $table->integer('user_id');

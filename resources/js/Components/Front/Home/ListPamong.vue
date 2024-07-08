@@ -8,8 +8,8 @@ const page = usePage()
 
 <template>
 <el-carousel :interval="4000" type="card" height="230px" indicator-position="none">
-    <el-carousel-item v-for="(pamong, p) in page.props.pamongs" :key="p" class="h-full relative">
-        <img src="/img/pamong.jpg" alt="Foto Pamong">
+    <el-carousel-item v-for="(pamong, p) in page.props.pamongs" :key="p" class="h-full bg-white relative">
+        <img :src="pamong.foto" alt="Foto Pamong">
         <Link :href="`/pamong/detail/${pamong.nik}`">
           <h1 class="w-full leading-4 absolute bottom-0 text-center p-2 bg-slate-400 text-white">
             <span class="underline">{{ pamong.gelar_depan ?? '' }} {{ pamong.nama }}, {{ pamong.gelar_belakang ?? '' }} </span><br>

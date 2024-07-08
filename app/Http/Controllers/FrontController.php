@@ -38,6 +38,28 @@ class FrontController extends Controller
         }
     }
 
+    public function profil(Request $request)
+    {
+        try {
+            return Inertia::render('Depan/Profil/Index', [
+                'posts' => Post::whereType('page')->get()
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function profilePage(Request $request, $category_id)
+    {
+        try {
+            return Inertia::render('Depan/Profil/Sejarah', [
+                'post' => Post::whereType('page')->whereCategoryId($category_id)->first(),
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
     public function berita(Request $request)
     {
         try {

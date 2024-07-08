@@ -84,6 +84,7 @@ const onHeaderStuck = (e) => {
                                 <!-- List Pengumuman -->
                                  <ListInfos />
                                 <!-- Agenda -->
+                                 <div class="my-1">&nbsp;</div>
                                 <el-divider content-position="center" class="mt-6">
                                     <template #default>
                                         <span class="flex items-center gap-1 text-sky-600 text-lg">
@@ -95,6 +96,7 @@ const onHeaderStuck = (e) => {
                                 <!-- List Agenda -->
                                  <Agenda />
                                  <!-- Pamong -->
+                                 <div class="my-2">&nbsp;</div>
                                 <el-divider content-position="center" class="mt-6">
                                     <template #default>
                                         <Link href="/pamong">

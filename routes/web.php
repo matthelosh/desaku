@@ -8,6 +8,11 @@ use Inertia\Inertia;
 Route::prefix('')->group(function () {
     Route::get('/', [FrontController::class, 'home'])->name('front.home');
 
+    Route::prefix('profil')->group(function () {
+        Route::get('/', [FrontController::class, 'profil'])->name('front.profil');
+        Route::get('/{category_id}', [FrontController::class, 'profilePage'])->name('front.profil.page');
+    });
+
     Route::prefix('berita')->group(function () {
         Route::get('/', [FrontController::class, 'berita'])->name('post');
         Route::get('/{slug}', [FrontController::class, 'readPost'])->name('post.read');

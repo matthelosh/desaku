@@ -10,7 +10,7 @@ class PostService
     {
         $queries = $request->query();
         if (count($queries) < 1) {
-            $posts = Post::orderBy('updated_at', 'DESC')->limit(5)->get();
+            $posts = Post::whereNot('category_id', 'Info')->whereNot('type', 'page')->orderBy('updated_at', 'DESC')->limit(5)->get();
         }
         return $posts;
     }

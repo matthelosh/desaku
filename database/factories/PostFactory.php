@@ -20,6 +20,7 @@ class PostFactory extends Factory
             'title' => fake()->sentence(),
             'slug' => fake()->slug(),
             'category_id' => fake()->randomElement(['Berita', 'Info']),
+            'type' => fake()->randomElement(['post', 'page']),
             'cover' => 'https://loremflickr.com/320/240',
             'content' => fake()->realText(),
             'user_id' => '1',

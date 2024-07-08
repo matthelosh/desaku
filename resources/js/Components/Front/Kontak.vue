@@ -50,7 +50,7 @@ import { Icon } from '@iconify/vue'
                 </p>
                 <p class="flex items-center">
                     <Icon icon="mdi:email" class="mr-1" />
-                    <a href="mailto:pemdes@bayang.desa.id" class="hover:underline">pemdes@bayang.desa.id</a>
+                    <a href="mailto:pemdes@bayang.desa.id" class="hover:underline">pemdes@samar.desa.id</a>
                 </p>
                 <p class="flex items-center mt-4 gap-2">
                     <a href="#" target="_blank">
