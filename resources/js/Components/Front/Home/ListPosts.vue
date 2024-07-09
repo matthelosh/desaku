@@ -19,7 +19,7 @@ onBeforeMount(() => {
         <template v-for="(post, p) in posts" :key="p">
             <Transition name="pos" appear>
                 <div class="post-card gap-0 grid grid-cols-12 border bg-white border-3 shadow-sm mb-4">
-                    <div class="cover sm:col-span-3 col-span-12  flex items-end relative" >
+                    <div class="cover sm:col-span-3 col-span-12  flex items-end relative  bg-sky-50" >
                         <img :src="post.cover" alt="Cover" class="object-cover w-full h-full opacity-70 hover:opacity-100 transition-all ease-in-out duration-200 bg-blend-overlay after:block after:absolute after:w-full after:h-full after:bg-violet-400 after:content-['Halo']">
                         <p class="absolute w-full bg-sky-600 bg-opacity-60 text-white text-center text-sm p-1">{{ dayjs(post.created_at).format('DD MMM YYYY')}}</p>
                     </div>

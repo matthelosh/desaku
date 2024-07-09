@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, usePage } from '@inertiajs/vue3';
 import { Icon } from '@iconify/vue';
 
 import Header from '@/Components/Front/Header.vue'
@@ -12,7 +12,7 @@ import Agenda from '@/Components/Front/Home/Agenda.vue'
 import CarouselPamong from '@/Components/Front/Home/ListPamong.vue'
 import ListProducts from '@/Components/Front/Home/ListProducts.vue'
 import ListWisata from '@/Components/Front/Home/ListWisata.vue'
-defineProps({
+const props = defineProps({
     canLogin: {
         type: Boolean,
     },
@@ -29,7 +29,7 @@ defineProps({
     },
 });
 
-
+const page = usePage()
 
 const onHeaderStuck = (e) => {
     const header = document.querySelector('.main-nav')
@@ -50,8 +50,17 @@ const onHeaderStuck = (e) => {
     </Head>
     <div class="common-layout h-min-screen w-screen bg-slate-100">
         <el-container>
-            <div class="info w-full h-8 bg-sky-600">
-
+            <div class="info w-full h-8 bg-sky-600 flex items-center justify-between px-8 text-white">
+                <span class="flex items-center gap-1"><Icon icon="mdi:phone-classic" /> 085767676</span>
+                <div class="right flex">
+                    <Link href="/login" v-if="!page.props.auth.user" class="flex items-center gap-1">
+                        <span class="text-sm">Masuk</span>
+                        <Icon icon="mdi:login-variant" />
+                    </Link>
+                    <Link href="/dashboard" v-else>
+                        <Icon icon="mdi:monitor-dashboard" />
+                    </Link>
+                </div>
             </div>
             <el-affix @change="onHeaderStuck" :offset="0">
                 <Header />

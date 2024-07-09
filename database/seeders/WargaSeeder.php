@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Pamong;
+use App\Models\Warga;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PamongSeeder extends Seeder
+class WargaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Pamong::factory(11)->create();
+        Warga::factory(500)->create();
     }
 }

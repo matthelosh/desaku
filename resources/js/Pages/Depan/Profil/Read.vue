@@ -19,7 +19,7 @@ const post = computed(() => page.props.post)
 
 <template>
     <Head>
-        <title>{{ post.title }}</title>
+        <title>{{ post ? title : '404' }}</title>
     </Head>
     <div class="page bg-sky-200">
         <el-affix @change="onHeaderStuck">
@@ -50,7 +50,7 @@ const post = computed(() => page.props.post)
                                     <el-breadcrumb-item>
                                         <template #default>
                                             <span class="flex">
-                                                {{ post.title }}
+                                                {{ post?.title }}
                                             </span>
                                         </template>
                                     </el-breadcrumb-item>
@@ -61,12 +61,15 @@ const post = computed(() => page.props.post)
                             <el-col class="bg-white">
                                 <div class="card rounded-md overflow-hidden shadow">
                                     <div class="card-header p-4">
-                                        <h3 class="font-bold text-2xl">{{ post.title }}</h3>
+                                        <h3 class="font-bold text-2xl">{{ post?.title }}</h3>
                                         <div class="meta w-full my-2 flex gap-2">
-                                            <el-tag type="primary">{{ post.category_id }}</el-tag>
-                                            <el-tag type="danger">{{ dayjs(post.updated_at).locale('id').format('DD MMM YYYY H:m:s') }}</el-tag>
+                                            <el-tag type="primary">{{ post?.category_id }}</el-tag>
+                                            <el-tag type="danger">{{ dayjs(post?.updated_at).locale('id').format('DD MMM YYYY H:mm:s') }}</el-tag>
                                         </div>
-                                        <p v-html="post.content" class="text-justify font-lg"></p>
+                                        <p v-html="post?.content" class="text-justify font-lg"></p>
+                                        <el-alert type="error" v-if="!post" size="large" style="margin: 30px auto;" :show-icon="true">
+                                            <h3 class="text-xl">Belum ada tulisan</h3>
+                                        </el-alert>
                                     </div>
                                 </div>
                             </el-col>

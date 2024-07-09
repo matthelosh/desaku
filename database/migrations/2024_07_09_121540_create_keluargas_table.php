@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rts', function (Blueprint $table) {
+        Schema::create('keluargas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 30);
-            $table->string('ketua', 60);
-            $table->integer('rw_id');
+            $table->string('no_kk', 40)->unique();
             $table->integer('dusun_id');
+            $table->integer('rw_id');
+            $table->integer('rt_id');
+            $table->date('tanggal_kk')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rts');
+        Schema::dropIfExists('keluargas');
     }
 };

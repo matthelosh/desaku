@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Jabatan;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,10 +17,14 @@ class PamongFactory extends Factory
      */
     public function definition(): array
     {
+        $jabatans = Jabatan::all();
+
+        $jabs = $jabatans->map(fn ($j) => $j->id);
         return [
             'nik' => fake('id')->ean13(),
             'nip' => fake('id')->ean13(),
             'nama' => fake('id')->name(),
+            'jabatan_id' => fake()->randomElement($jabs),
             'foto' => 'https://loremflickr.com/320/240/potrait',
             'gelar_belakang' => fake('id')->randomElement(['S.Pd.', 'S.Kom', 'S.Sos.', 'MM', 'M.Si.', 'M.Kom', 'SH.', 'MH.']),
             'jk' => fake('id')->randomElement(['Laki-laki', 'Perempuan']),

@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('hp', 16);
             $table->string('email', 100)->nullable();
             $table->boolean('is_active')->default(true);
+            $table->integer('jabatan_id')->nullable();
             $table->timestamps();
         });
     }

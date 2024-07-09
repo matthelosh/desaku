@@ -1,0 +1,50 @@
+[
+    {
+        "label": "Dashboard",
+        "url": "dashboard",
+        "icon": "view-dashboard",
+        "children": []
+    },
+    {
+        "label": "Identitas Desa",
+        "url": "dashboard.identitas",
+        "icon": "account-card",
+        "children": []
+    },
+    {
+        "label": "Lembaga & Organisasi",
+        "url": "dashboard.lembaga",
+        "icon": "people",
+        "children": []
+    },
+    {
+        "label": "Data Perangkat",
+        "url": "dashboard.pamong",
+        "icon": "account-tie",
+        "children": []
+    },
+    {
+        "label": "Berita & Info",
+        "url": "dashboard.post",
+        "icon": "newspaper",
+        "children": []
+    },
+    {
+        "label": "Agenda Kegiatan",
+        "url": "dashboard.agenda",
+        "icon": "calendar",
+        "children": []
+    },
+    {
+        "label": "Produk Unggulan",
+        "url": "dashboard.produk",
+        "icon": "shopping",
+        "children": []
+    },
+    {
+        "label": "Potensi Wisata",
+        "url": "dashboard.wisata",
+        "icon": "island",
+        "children": []
+    }
+]

@@ -52,7 +52,7 @@ class FrontController extends Controller
     public function profilePage(Request $request, $category_id)
     {
         try {
-            return Inertia::render('Depan/Profil/Sejarah', [
+            return Inertia::render('Depan/Profil/Read', [
                 'post' => Post::whereType('page')->whereCategoryId($category_id)->first(),
             ]);
         } catch (\Throwable $th) {

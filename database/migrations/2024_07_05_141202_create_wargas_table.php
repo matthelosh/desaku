@@ -13,6 +13,21 @@ return new class extends Migration
     {
         Schema::create('wargas', function (Blueprint $table) {
             $table->id();
+            $table->string('kk_id', 40);
+            $table->string('nik', 30)->unique();
+            $table->string('nama', 60);
+            $table->enum('jk', ['Laki-laki', 'Perempuan']);
+            $table->string('tempat_lahir', 150);
+            $table->date('tanggal_lahir');
+            $table->enum('agama', ['Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha', 'Konghuchu']);
+            $table->integer('rt_id');
+            $table->integer('rw_id');
+            $table->integer('dusun_id');
+            $table->string('pendidikan', 60)->nullable();
+            $table->string('pekerjaan', 100)->nullable();
+            $table->string('ayah', 100)->nullable();
+            $table->string('ibu', 100)->nullable();
+            $table->string('foto', 191)->nullable();
             $table->timestamps();
         });
     }

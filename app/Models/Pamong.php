@@ -14,6 +14,7 @@ class Pamong extends Model
         'nip',
         'gelar_depan',
         'nama',
+        'jabatan_id',
         'foto',
         'gelar_belakang',
         'jk',
@@ -25,4 +26,9 @@ class Pamong extends Model
         'email',
         'is_active'
     ];
+
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class);
+    }
 }

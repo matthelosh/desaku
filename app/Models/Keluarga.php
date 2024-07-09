@@ -5,29 +5,32 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rt extends Model
+class Keluarga extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'nama',
-        'ketua',
-        'rw_id',
-        'dusun_id'
-    ];
 
+    protected $fillable = [
+        'no_kk',
+        'dusun_id',
+        'rw_id',
+        'rt_id',
+        'tanggal_kk'
+    ];
 
     function dusun()
     {
         return $this->belongsTo(Dusun::class);
     }
-
     function rw()
     {
         return $this->belongsTo(Rw::class);
     }
-
-    function wargas()
+    function rt()
     {
-        return $this->hasMany(Warga::class);
+        return $this->belongsTo(Rt::class);
+    }
+    function anggotas()
+    {
+        return $this->hasMany(Warga::class, 'kk_id', 'no_kk');
     }
 }
