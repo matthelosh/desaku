@@ -25,6 +25,8 @@ Route::prefix('')->group(function () {
 
     Route::prefix('agenda')->group(function () {
         Route::post('/vcalendar', [AgendaController::class, 'vcalendar'])->name('front.vcalendar');
+        Route::delete('/{id}', [AgendaController::class, 'destroy'])->name('dashboard.agenda.destroy');
+        Route::post('/store', [AgendaController::class, 'store'])->name('dashboard.agenda.store');
     });
 });
 
@@ -48,6 +50,9 @@ Route::middleware('auth')->group(function () {
         Route::prefix('perangkat')->group(function () {
             Route::get("/", [PamongController::class, 'index'])->name('dashboard.pamong');
         });
+        Route::prefix('warga')->group(function () {
+            Route::get("/", [WargaController::class, 'index'])->name('dashboard.warga');
+        });
         Route::prefix('agenda')->group(function () {
             Route::get("/", [AgendaController::class, 'index'])->name('dashboard.agenda');
         });
@@ -60,6 +65,11 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{id}', [PostController::class, 'destroy'])->name('dashboard.post.destroy');
             Route::post('/image/upload', [PostController::class, 'uploadImage'])->name('dashboard.post.image.upload');
             Route::post('/category/index', [PostController::class, 'kategori'])->name('dashboard.post.category.index');
+        });
+        Route::prefix('usaha')->group(function () {
+            Route::get("/", [BusinessController::class, 'home'])->name('dashboard.bisnis');
+            Route::post("/store", [BusinessController::class, 'store'])->name('dashboard.bisnis.store');
+            Route::delete("/{id}", [BusinessController::class, 'destroy'])->name('dashboard.bisnis.destroy');
         });
         Route::prefix('produk')->group(function () {
             Route::get("/", [ProdukController::class, 'home'])->name('dashboard.produk');

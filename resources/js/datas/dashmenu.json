@@ -24,6 +24,12 @@
         "children": []
     },
     {
+        "label": "Data Warga",
+        "url": "dashboard.warga",
+        "icon": "account-tie",
+        "children": []
+    },
+    {
         "label": "Berita & Info",
         "url": "dashboard.post",
         "icon": "newspaper",
@@ -33,6 +39,12 @@
         "label": "Agenda Kegiatan",
         "url": "dashboard.agenda",
         "icon": "calendar",
+        "children": []
+    },
+    {
+        "label": "Bisnis & Usaha",
+        "url": "dashboard.bisnis",
+        "icon": "store-settings",
         "children": []
     },
     {

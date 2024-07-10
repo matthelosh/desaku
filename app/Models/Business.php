@@ -12,13 +12,12 @@ class Business extends Model
     protected $fillable = [
         'nama',
         'jenis',
-        'kategori',
+        'skala',
         'logo',
         'pemilik',
+        'online_store',
         'alamat',
         'kontak',
-        'jml_karyawan',
-        'omzet',
         'deskripsi'
     ];
 }

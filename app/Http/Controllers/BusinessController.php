@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Business;
-use App\Models\Produk;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class ProdukController extends Controller
+class BusinessController extends Controller
 {
     public function home(Request $request)
     {
         try {
-            return Inertia::render('Belakang/Produk', [
+            return Inertia::render('Belakang/Bisnis', [
                 'businesses' => Business::all(),
-                'products' => Produk::with('produsen')->get(),
             ]);
         } catch (\Throwable $th) {
             throw $th;

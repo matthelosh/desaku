@@ -10,7 +10,7 @@ class Produk extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
+        'business_id',
         'sku',
         'nama',
         'foto',
@@ -21,4 +21,9 @@ class Produk extends Model
         'deskripsi',
         'harga'
     ];
+
+    public function produsen()
+    {
+        return $this->belongsTo(Business::class, 'business_id', 'id');
+    }
 }

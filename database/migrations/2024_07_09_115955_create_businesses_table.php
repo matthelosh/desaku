@@ -14,14 +14,13 @@ return new class extends Migration
         Schema::create('businesses', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 191);
-            $table->enum('jenis', ['Bumdes', 'Perorangan', 'PT', 'CV', ' Lain']);
-            $table->enum('kategori', ['umkm', 'kecil', 'besar'])->default('umkm');
+            $table->string('jenis', 100);
+            $table->enum('skala', ['Mikro', 'Kecil', 'Menengah', 'Besar'])->default('Mikro');
             $table->string('logo', 191)->nullable();
             $table->string('pemilik', 191);
+            $table->string('online_store', 100)->nullable();
             $table->string('alamat', 191);
             $table->string('kontak', 100);
-            $table->string('jml_karyawan', 4);
-            $table->float('omzet', 2);
             $table->text('deskripsi');
             $table->timestamps();
         });

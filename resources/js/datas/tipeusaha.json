@@ -1,0 +1,21 @@
+{
+    "jenis": [
+        "Perdagangan",
+        "Jasa",
+        "Produksi",
+        "Pertambangan",
+        "Pariwisata",
+        "Pertanian",
+        "Keuangan",
+        "Peternakan",
+        "Pendidikan",
+        "Kesenian",
+        "Hiburan"
+    ],
+    "skalas": [
+        "Mikro",
+        "Kecil",
+        "Menengah",
+        "Besar"
+    ]
+}

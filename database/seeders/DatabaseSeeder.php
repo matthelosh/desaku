@@ -22,8 +22,9 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             PamongSeeder::class,
             PostSeeder::class,
+            BusinessSeeder::class,
             ProductSeeder::class,
-            WargaSeeder::class
+            WargaSeeder::class,
         ]);
     }
 }

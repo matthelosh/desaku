@@ -111,7 +111,7 @@ const hapus = async(id) => {
 </DashLayout>
 </template>
 
-<style scoped>
+<style>
 .pos-enter-active {
     transition: all .5s ease-in-out
 }
