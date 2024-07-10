@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
             Route::get("/", [IdentitasController::class, 'home'])->name('dashboard.identitas');
         });
         Route::prefix('lembaga')->group(function () {
-            Route::get("/", [IdentitasController::class, 'home'])->name('dashboard.lembaga');
+            Route::get("/", [LembagaController::class, 'index'])->name('dashboard.lembaga');
         });
 
         Route::prefix('perangkat')->group(function () {
@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function () {
         });
         Route::prefix('warga')->group(function () {
             Route::get("/", [WargaController::class, 'index'])->name('dashboard.warga');
+            Route::get('/alamat', [WargaController::class, 'alamat'])->name('dashboard.warga.alamat');
         });
         Route::prefix('agenda')->group(function () {
             Route::get("/", [AgendaController::class, 'index'])->name('dashboard.agenda');
@@ -73,6 +74,8 @@ Route::middleware('auth')->group(function () {
         });
         Route::prefix('produk')->group(function () {
             Route::get("/", [ProdukController::class, 'home'])->name('dashboard.produk');
+            Route::post("/store", [ProdukController::class, 'store'])->name('dashboard.produk.store');
+            Route::delete("/{id}", [ProdukController::class, 'destroy'])->name('dashboard.produk.destroy');
         });
         Route::prefix('wisata')->group(function () {
             Route::get("/", [ProdukController::class, 'home'])->name('dashboard.wisata');

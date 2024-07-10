@@ -66,7 +66,7 @@ const simpan = async() => {
                     <el-card>
                         
                         <el-divider>Tambah Agenda</el-divider>
-                        <el-form v-model="newAgenda" label-position="top">
+                        <el-form v-model="newAgenda" label-position="top" ref="formAgenda">
                             <el-form-item label="Nama" >
                                 <el-input v-model="newAgenda.nama" 
                             placeholder="Masukkan Nama Kegiatan" />
@@ -90,12 +90,11 @@ const simpan = async() => {
                             <el-form-item label="Deskripsi" >
                                 <el-input type="textarea" v-model="newAgenda.deskripsi" placeholder="Keterangan" />
                             </el-form-item>
-                        </el-form>
-                        <template #footer>
-                            <div class="flex justify-center">
+                            <div class="flex justify-center gap-1 items-center">
+                                <el-button type="warning" size="small" @click="newAgenda = {}">Reset</el-button>
                                 <el-button type="primary" size="large" @click="simpan">Simpan</el-button>
                             </div>
-                        </template>
+                        </el-form>
                     </el-card>
                 </el-affix>
             </el-col>

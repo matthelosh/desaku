@@ -25,33 +25,34 @@ class ProdukController extends Controller
     {
         try {
             $data = $request['data'];
-            Business::updateOrCreate(
+            Produk::updateOrCreate(
                 [
                     'id' => $data['id'] ?? null,
                 ],
                 [
+                    'business_id' => $data['business_id'],
+                    'sku' => $data['sku'],
                     'nama' => $data['nama'],
                     'jenis' => $data['jenis'],
-                    'skala' => $data['skala'],
-                    'logo' => null,
-                    'pemilik' => $data['pemilik'],
-                    'online_store' => $data['online_store'],
-                    'alamat' => $data['alamat'],
-                    'kontak' => $data['kontak'],
+                    'foto' => null,
+                    'satuan' => $data['satuan'],
+                    'berat' => $data['berat'],
+                    'link' => $data['link'],
                     'deskripsi' => $data['deskripsi'],
+                    'harga' => $data['harga'],
                 ]
             );
-            return \back()->with('message', 'Data Usaha disimpan');
+            return \back()->with('message', 'Data Produk disimpan');
         } catch (\Throwable $th) {
             throw $th;
         }
     }
 
-    public function destroy(Business $business, $id)
+    public function destroy(Produk $produk, $id)
     {
         try {
-            $business->destroy($id);
-            return \back()->with('message', 'Data Usaha dihapus');
+            $produk->destroy($id);
+            return \back()->with('message', 'Data Produk dihapus');
         } catch (\Throwable $th) {
             throw $th;
         }

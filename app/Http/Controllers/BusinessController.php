@@ -12,7 +12,7 @@ class BusinessController extends Controller
     {
         try {
             return Inertia::render('Belakang/Bisnis', [
-                'businesses' => Business::all(),
+                'businesses' => Business::with('products')->get(),
             ]);
         } catch (\Throwable $th) {
             throw $th;
@@ -48,6 +48,8 @@ class BusinessController extends Controller
     public function destroy(Business $business, $id)
     {
         try {
+            $business = $business->findOrFail($id);
+            $business->products()->delete();
             $business->destroy($id);
             return \back()->with('message', 'Data Usaha dihapus');
         } catch (\Throwable $th) {

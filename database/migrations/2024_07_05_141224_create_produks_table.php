@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('jenis', 100);
             $table->string('satuan', 50);
             $table->string('berat', 20)->nullable();
-            $table->string('dimensi', 150)->nullable();
+            $table->string('link', 150)->nullable();
             $table->text('deskripsi');
             $table->integer('harga');
             $table->timestamps();

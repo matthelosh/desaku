@@ -17,7 +17,7 @@ class Produk extends Model
         'jenis',
         'satuan',
         'berat',
-        'dimensi',
+        'link',
         'deskripsi',
         'harga'
     ];

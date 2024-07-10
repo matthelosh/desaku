@@ -8,24 +8,23 @@ import { ElNotification } from 'element-plus';
 
 const page = usePage()
 const mode = ref('list')
-const FormBisnis = defineAsyncComponent(() => import('@/Components/Back/Bisnis/FormBisnis.vue'))
-const businesses = computed(() => page.props.businesses)
+const FormProduk = defineAsyncComponent(() => import('@/Components/Back/Product/FormProduk.vue'))
 const products = computed(() => page.props.products)
-const selectedBusiness = ref(null)
+const selectedProduct = ref(null)
 
-const formBisnis = ref(false)
-const openForm = () => {formBisnis.value = true; mode.value = 'tulis'}
-const edit = (item) => {formBisnis.value = true; selectedBusiness.value = item; mode.value = 'tulis'}
+const formProduk = ref(false)
+const openForm = () => {formProduk.value = true; mode.value = 'tulis'}
+const edit = (item) => {formProduk.value = true; selectedProduct.value = item; mode.value = 'tulis'}
 const closeForm = () => { 
     mode.value = 'list'
-    formBisnis.value = false
-    selectedBusiness.value = {}
+    formProduk.value = false
+    selectedProduct.value = {}
 }
 const hapus = async(item) => {
-    router.delete(route('dashboard.bisnis.destroy', {id: item.id}), {
+    router.delete(route('dashboard.produk.destroy', {id: item.id}), {
         onSuccess: page => {
             ElNotification({title: 'Info', message: page.props.flash.message, type: 'success'})
-            router.reload({only: ['businesses']})
+            router.reload({only: ['products']})
         }, onError: errs => {
             Object.keys(errs).forEach(k => {
                 setTimeout(() => {
@@ -68,11 +67,10 @@ const hapus = async(item) => {
                         <span>{{ scope.row.produsen.nama }}</span>
                     </template>
                 </el-table-column>
-                <el-table-column label="Dimensi" prop="dimensi" width="150"></el-table-column>
+                <el-table-column label="Link" prop="link" width="150"></el-table-column>
                 <el-table-column label="Satuan" prop="satuan" width="250"></el-table-column>
                 <el-table-column label="Harga (Rp)" prop="harga" width="250"></el-table-column>
                 <el-table-column label="Pemesanan" prop="produsen.kontak" width="200"></el-table-column>
-                <el-table-column label="Toko Online" prop="produsen.online_store" width="200"></el-table-column>
                 <el-table-column label="Keterangan" prop="deskripsi" width="500"></el-table-column>
                 <el-table-column label="Opsi" :fixed="'right'" width="90">
                     <template #default="scope">
@@ -92,7 +90,7 @@ const hapus = async(item) => {
                     </template>
                 </el-table-column>
             </el-table>
-            <FormBisnis v-if="mode == 'tulis'" :selectedBusiness="selectedBusiness" @close="closeForm" />
+            <FormProduk v-if="mode == 'tulis'" :selectedProduct="selectedProduct" @close="closeForm" />
         </TransitionGroup>
     </div>
 </DashLayout>

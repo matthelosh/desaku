@@ -28,7 +28,7 @@ class ProdukFactory extends Factory
             'jenis' => 'umkm',
             'satuan' => 'bungkus',
             'berat' => '500gr',
-            'dimensi' => '300x400cm',
+            'link' => fake()->url(),
             'deskripsi' => fake()->realText(),
             'harga' => 10000
         ];

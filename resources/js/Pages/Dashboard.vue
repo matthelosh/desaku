@@ -55,6 +55,16 @@ const data = computed(() => page.props.data)
                     </el-card>
                 </el-col>
                 <el-col :span="8">
+                    <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-indigo-500 h-[200px]">
+                        <template #default>
+                            <h3 class="font-bold text-xl uppercase tracking-wide text-sky-50">
+                                Data Potensi Usaha
+                            </h3>
+                            <h1 class="text-8xl text-center text-white relative">{{ data.businesses.length }} <small class="text-2xl right-6 -ml-6">Perusahaan</small></h1>
+                        </template>
+                    </el-card>
+                </el-col>
+                <el-col :span="8">
                     <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-sky-500 h-[200px]">
                         <template #default>
                             <h3 class="font-bold text-xl uppercase tracking-wide text-sky-50">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Business;
 use App\Models\Post;
 use App\Models\Produk;
 use App\Models\Warga;
@@ -20,6 +21,7 @@ class DashboardController extends Controller
                 'produks' => Produk::all(),
                 'wisatas' => Wisata::all(),
                 'wargas' => Warga::with('keluarga', 'rt', 'rw', 'dusun')->get(),
+                'businesses' => Business::all(),
             ];
             return Inertia::render('Dashboard', [
                 'data' => $datas,

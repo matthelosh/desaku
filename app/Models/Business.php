@@ -20,4 +20,9 @@ class Business extends Model
         'kontak',
         'deskripsi'
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Produk::class, 'business_id', 'id');
+    }
 }

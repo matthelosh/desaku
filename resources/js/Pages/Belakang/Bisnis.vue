@@ -60,7 +60,11 @@ const hapus = async(item) => {
                 <el-table-column label="Pemilik" prop="pemilik" width="200"></el-table-column>
                 <el-table-column label="Alamat" prop="alamat" width="250"></el-table-column>
                 <el-table-column label="Kontak" prop="kontak" width="150"></el-table-column>
-                <el-table-column label="Toko Online" prop="online_store" width="200"></el-table-column>
+                <el-table-column label="Produk"  width="200">
+                    <template #default="scope">
+                        <span>{{ scope.row.products?.length }}</span>
+                    </template>
+                </el-table-column>
                 <el-table-column label="Keterangan" prop="deskripsi" width="500"></el-table-column>
                 <el-table-column label="Opsi" :fixed="'right'" width="90">
                     <template #default="scope">
