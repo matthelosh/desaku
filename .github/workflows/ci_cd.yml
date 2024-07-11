@@ -23,8 +23,14 @@ jobs:
             git status
             composer install
             php artisan migrate
+      - name: Install Yarn
+        run: npm install -g yarn
+        script: |
             php artisan db:seed
             yarn --only=prod
             yarn build
+      - name: Clean up
+        if: always()
+        run: npm uninstall -g yarn
             
       
