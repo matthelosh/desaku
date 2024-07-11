@@ -8,7 +8,11 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3
-      - name: Deploy Using SSH
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          check-latest: true
+      - name: Deploy Laravel App
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -17,16 +21,20 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: 22
           script: |
-            whoami
-            cd /var/www/desaku
-            git pull origin main
-            git status
+            cd ${{secrets.APP_PATH}}
+            fit reset --hard
+            git clean -fd
+            php artisan down
+            git pull --ff
             composer install
-            php artisan migrate
+            php artisan migrate:refresh
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
             npm install -g yarn
             php artisan db:seed
             yarn --only=prod
             yarn build
             npm uninstall -g yarn
+            php artisan up
             
       
