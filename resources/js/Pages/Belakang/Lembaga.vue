@@ -15,7 +15,7 @@ const data = computed(() => page.props.data)
     <DashLayout>
         <el-container>
             <el-row :gutter="20" class="w-full">
-                Halo
+                Halo, Kenapa
             </el-row>
         </el-container>
     </DashLayout>
