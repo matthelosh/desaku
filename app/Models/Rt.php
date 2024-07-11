@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Rt extends Model
 {
     use HasFactory;
+    use \Znck\Eloquent\Traits\BelongsToThrough;
+
     protected $fillable = [
         'nama',
         'ketua',
@@ -18,7 +20,7 @@ class Rt extends Model
 
     function dusun()
     {
-        return $this->belongsTo(Dusun::class);
+        return $this->belongsToThrough(Dusun::class, Rw::class);
     }
 
     function rw()

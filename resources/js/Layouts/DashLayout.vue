@@ -1,9 +1,17 @@
 <script setup>
+import { ref, onMounted } from 'vue'
+import ProgressIndicator from '@/Components/ProgressIndicator.vue';
 import { Icon } from '@iconify/vue';
 import { Link } from '@inertiajs/vue3'
+import { useProgress } from '@/composable/useProgress';
 
 import SideMenu from '@/Layouts/SideMenu.vue'
+const { isLoading } = useProgress()
 
+onMounted(() => {
+    // const instance = getCurrentInstance();
+    // instance.appContext.config.globalProperties.$progress = progress.value
+})
 </script>
 
 <template>
@@ -31,6 +39,7 @@ import SideMenu from '@/Layouts/SideMenu.vue'
                         </div>
                     </el-header>
                 <el-main class="bg-sky-50 max-h-[94.5vh]" >
+                    <progress-indicator v-if="isLoading" ref="progress"></progress-indicator>
                     <Transition name="pindah" appear>
                         <slot />
                     </Transition>

@@ -21,8 +21,6 @@ return new class extends Migration
             $table->date('tanggal_lahir');
             $table->enum('agama', ['Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha', 'Konghuchu']);
             $table->integer('rt_id');
-            $table->integer('rw_id');
-            $table->integer('dusun_id');
             $table->string('pendidikan', 60)->nullable();
             $table->string('pekerjaan', 100)->nullable();
             $table->string('ayah', 100)->nullable();

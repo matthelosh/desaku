@@ -1,32 +1,55 @@
 <script setup>
-import { ref, computed, defineAsyncComponent } from 'vue'
+import { ref, computed, defineAsyncComponent, onMounted } from 'vue'
 import { Head, usePage, router } from '@inertiajs/vue3'
 import { Icon } from '@iconify/vue'
-
 import DashLayout from '@/Layouts/DashLayout.vue'
-
+// import NProgress from 'nprogress'
+const ProgressIndicator = defineAsyncComponent(() => import('@/Components/ProgressIndicator.vue'))
 const FormWarga = defineAsyncComponent(() => import('@/Components/Back/Warga/FormWarga.vue'))
 const mode = ref('list')
 const selectedWarga = ref(null)
-
 const page = usePage()
 const search = ref('')
 const datas = computed(() => {
     return page.props.wargas.filter(warga => warga.nama.toLowerCase().includes(search.value.toLowerCase()))
 })
 
+const progressIndicator = ref(null)
+
 const tambah = () => {
     mode.value = 'tambah'
+}
+
+const edit = (item) => {
+    selectedWarga.value = item
+    mode.value = 'tambah'
+}
+
+const hapus = async(id) => {
+    router.delete(route('dashboard.warga.destroy', {id: id}), {
+        onStart: visit => {
+            progressIndicator.value.message = 'Masih Proses'
+            progressIndicator.value.start()
+        },
+        onProgress: progress => console.log(progress),
+        onSuccess: page => {
+            progressIndicator.value.finish(100)
+            router.reload({only: ['wargas']})
+        },
+        onError: errs => console.log(errs)
+    })
 }
 
 const closeForm = () => {
     mode.value = 'list'
     selectedWarga.value = null
 }
+
 </script>
 
 <template>
     <Head title="Data Warga" />
+    <ProgressIndicator ref="progressIndicator"  />
     <DashLayout>
         <el-container>
             <el-row :gutter="20" class="w-full">
@@ -56,6 +79,22 @@ const closeForm = () => {
                                     <el-table-column label="RT" prop="rt.nama" sortable width="80"></el-table-column>
                                     <el-table-column label="RW" prop="rw.nama" sortable width="80"></el-table-column>
                                     <el-table-column label="Dusun" prop="dusun.nama" width="150"></el-table-column>
+                                    <el-table-column label="OPsi" fixed="right" width="150">
+                                        <template #default="scope">
+                                            <div class="flex items-center gap-1">
+                                                <el-button circle type="warning" size="small" @click="edit(scope.row)">
+                                                    <Icon icon="mdi:edit" />
+                                                </el-button>
+                                                <el-popconfirm title="Hapus Data?" @confirm="hapus(scope.row.id)">
+                                                    <template #reference>
+                                                        <el-button circle type="danger" size="small">
+                                                            <Icon icon="mdi:close" />
+                                                        </el-button>
+                                                    </template>
+                                                </el-popconfirm>
+                                            </div>
+                                        </template>
+                                    </el-table-column>
                                 </el-table>
                             </template>
                         </el-card>

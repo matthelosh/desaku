@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Rt;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,6 +17,7 @@ class WargaFactory extends Factory
      */
     public function definition(): array
     {
+        $rts = Rt::all();
         return [
             'kk_id' => fake('id')->randomNumber(8),
             'nik' => fake('id')->ean13(),
@@ -24,9 +26,7 @@ class WargaFactory extends Factory
             'tempat_lahir' => 'Tulungagung',
             'tanggal_lahir' => fake()->date(),
             'agama' => fake()->randomElement(['Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha', 'Konghuchu']),
-            'rt_id' => fake()->numberBetween(1, 48),
-            'rw_id' => fake()->numberBetween(1, 8),
-            'dusun_id' => fake()->numberBetween(1, 5),
+            'rt_id' => fake()->numberBetween(1, count($rts)),
             'pendidikan' => fake()->randomElement(['Tidak Sekolah', 'SD/Sederajat', 'SLTP/Sederajat', 'SLTA/Sederajat', 'DII', 'DIII', 'DIV', 'S1', 'S2', 'S3']),
             'pekerjaan' => fake()->randomElement(['Tidak Bekerja', 'Ibu Rumah Tangga', 'Pelajar', 'TNI/Polri', 'PNS', 'Karyawan Swasta', 'Petani/Pekebun', 'Nelayan', 'Guru', 'Buruh', 'Wiraswasta', 'Pegawai Desa']),
             'ayah' => fake()->name(),

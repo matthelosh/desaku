@@ -22,11 +22,6 @@ class Dusun extends Model
 
     public function rts()
     {
-        $this->hasMany(Rt::class);
-    }
-
-    public function wargas()
-    {
-        return $this->hasMany(Warga::class);
+        $this->hasManyThrough(Rt::class, Rw::class);
     }
 }

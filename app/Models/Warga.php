@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Warga extends Model
 {
     use HasFactory;
+    use \Znck\Eloquent\Traits\BelongsToThrough;
 
     protected $fillable = [
         'kk_id',
@@ -18,8 +20,6 @@ class Warga extends Model
         'tanggal_lahir',
         'agama',
         'rt_id',
-        'rw_id',
-        'dusun_id',
         'pendidikan',
         'pekerjaan',
         'ayah',
@@ -29,11 +29,11 @@ class Warga extends Model
 
     public function dusun()
     {
-        return $this->belongsTo(Dusun::class);
+        return $this->belongsToThrough(Dusun::class, [Rw::class, Rt::class]);
     }
     public function rw()
     {
-        return $this->belongsTo(Rw::class);
+        return $this->belongsToThrough(Rw::class, Rt::class);
     }
     public function rt()
     {
@@ -42,5 +42,10 @@ class Warga extends Model
     public function keluarga()
     {
         return $this->belongsTo(Keluarga::class, 'no_kk', 'no_kk');
+    }
+
+    public function lembaga()
+    {
+        return $this->belongsToMany(Lembaga::class, 'anggotas')->withPivot('jabatan');
     }
 }

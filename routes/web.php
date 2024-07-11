@@ -52,7 +52,9 @@ Route::middleware('auth')->group(function () {
         });
         Route::prefix('warga')->group(function () {
             Route::get("/", [WargaController::class, 'index'])->name('dashboard.warga');
+            Route::post("/store", [WargaController::class, 'store'])->name('dashboard.warga.store');
             Route::get('/alamat', [WargaController::class, 'alamat'])->name('dashboard.warga.alamat');
+            Route::delete("/{id}", [WargaController::class, 'destroy'])->name('dashboard.warga.destroy');
         });
         Route::prefix('agenda')->group(function () {
             Route::get("/", [AgendaController::class, 'index'])->name('dashboard.agenda');

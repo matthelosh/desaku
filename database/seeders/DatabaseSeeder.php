@@ -24,9 +24,11 @@ class DatabaseSeeder extends Seeder
             PostSeeder::class,
             DusunSeeder::class,
             RwSeeder::class,
+            RtSeeder::class,
             BusinessSeeder::class,
             ProductSeeder::class,
             WargaSeeder::class,
+            LembagaSeeder::class,
         ]);
     }
 }
