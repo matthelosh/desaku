@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div class="hero bg-[url('/img/bg.png')] bg-green-300 bg-blend-multiply w-full h-[20vh] md:h-[60vh] bg-no-repeat bg-cover relative">
+    <div class="hero bg-[url('/img/bg.png')] bg-green-300 bg-blend-multiply w-full h-[25vh] md:h-[60vh] bg-no-repeat bg-cover relative">
         <div class="hero-content w-full h-full bg-violet-400 bg-blend-color bg-opacity-0 flex items-center justify-center">
             <div>
                 <h3 class="text-white text-xl uppercase text-center">

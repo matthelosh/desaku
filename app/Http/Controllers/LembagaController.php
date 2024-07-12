@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dusun;
-use App\Models\Rt;
-use App\Models\Rw;
+use App\Models\Lembaga;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -15,9 +14,8 @@ class LembagaController extends Controller
         try {
             return Inertia::render('Belakang/Lembaga', [
                 'data' => [
-                    'dusuns' => Dusun::with('rws')->get(),
-                    'rws' => Rw::with('rts')->get(),
-                    'rts' => Rt::with('wargas')->get()
+                    'dusuns' => Dusun::with('rws.rts.wargas')->get(),
+                    'lembagas' => Lembaga::with('members.rt.rw.dusun')->get(),
                 ]
             ]);
         } catch (\Throwable $th) {

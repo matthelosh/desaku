@@ -9,7 +9,7 @@ const page = usePage()
         <ol>
             <template v-for="(info, i) in page.props.infos" :key="i">
                 <li class="mb-4">
-                    <Link :href="`/berita/${info.slug}`" class="block bg-sky-500  text-white rounded font-bold flex gap-2 items-center  rounded-full hover:translate-x-2 transition-all duration-300 ease-in-out hover:shadow-md">
+                    <Link :href="`/info/${info.slug}`" class="block bg-sky-500  text-white rounded font-bold flex gap-2 items-center  rounded-full hover:translate-x-2 transition-all duration-300 ease-in-out hover:shadow-md">
                         <img :src="info.cover" alt="Foto" class="h-10 w-10 rounded-full">
                         {{ info.title }}
                     </Link>

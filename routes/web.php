@@ -17,6 +17,10 @@ Route::prefix('')->group(function () {
         Route::get('/', [FrontController::class, 'berita'])->name('post');
         Route::get('/{slug}', [FrontController::class, 'readPost'])->name('post.read');
     });
+    Route::prefix('info')->group(function () {
+        Route::get('/', [FrontController::class, 'info'])->name('info');
+        Route::get('/{slug}', [FrontController::class, 'readPost'])->name('info.read');
+    });
 
     Route::prefix('pamong')->group(function () {
         Route::get('/', [PamongController::class, 'home'])->name('front.pamong');

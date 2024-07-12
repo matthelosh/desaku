@@ -45,7 +45,7 @@ const onPageUpdated = (e) => {
         </VCalendar>
         <div class="mt-2">
             <el-table :data="agendas">
-                <el-table-column label="Tanggal" >
+                <el-table-column label="Tanggal" fixed="left">
                     <template #default="scope">
                         <span>{{ dayjs(scope.row.mulai).format('DD MMM YYYY') }}</span>
                     </template>

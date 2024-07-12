@@ -64,7 +64,17 @@ class FrontController extends Controller
     {
         try {
             return Inertia::render('Depan/Berita', [
-                'posts' => Post::all()
+                'posts' => Post::whereCategoryId('Berita')
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    public function info(Request $request)
+    {
+        try {
+            return Inertia::render('Depan/Berita', [
+                'posts' => Post::where('category_id', 'Info')->get()
             ]);
         } catch (\Throwable $th) {
             throw $th;
@@ -74,10 +84,18 @@ class FrontController extends Controller
     public function readPost(Request $request, $slug)
     {
         try {
-            $post = Post::whereSlug($slug)->first();
+            $post = Post::whereSlug($slug)->with('author')->first();
+            $others = Post::whereType('post')
+                ->whereCategoryId($post->category_id)
+                ->whereNot('id', $post->id)
+                ->with('author')
+                ->orderBy('updated_at', 'DESC')
+                ->limit(5)
+                ->get();
 
             return Inertia::render('Depan/ReadPost', [
                 'post' => $post,
+                'others' => $others,
             ]);
         } catch (\Throwable $th) {
             throw $th;

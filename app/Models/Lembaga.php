@@ -18,6 +18,6 @@ class Lembaga extends Model
 
     public function members()
     {
-        return $this->belongsToMany(Warga::class, 'anggotas')->withPivot('jabatan');
+        return $this->belongsToMany(Warga::class, 'anggotas')->withPivot('jabatan')->withTimestamps();
     }
 }
