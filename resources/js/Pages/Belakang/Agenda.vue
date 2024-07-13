@@ -26,6 +26,7 @@ const extensions = [
 ]
 const page = usePage()
 const mode = ref('list')
+const lebar = computed(() => window.innerWidth <= 414 ? 'xs' : 'sm')
 
 const newAgenda = ref({
 })
@@ -55,14 +56,14 @@ const simpan = async() => {
 <template>
     <Head title="Agenda Kegiatan" />
     <DashLayout>
-        <el-row class="w-full" :gutter="20">
-            <el-col :span="16">
+        <el-row class="w-full" :gutter="lebar == 'xs' ? 0 : 20">
+            <el-col :span="16" :xs="24">
                 <el-card>
                     <AllAgenda @edit="editAgenda" />
                 </el-card>
             </el-col>
-            <el-col :span="8">
-                <el-affix :offset="80">
+            <el-col :span="8" :xs="24">
+                <el-affix :offset="lebar == 'xs' ? 20 : 80">
                     <el-card>
                         
                         <el-divider>Tambah Agenda</el-divider>

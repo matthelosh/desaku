@@ -49,6 +49,10 @@ Route::middleware('auth')->group(function () {
         });
         Route::prefix('lembaga')->group(function () {
             Route::get("/", [LembagaController::class, 'index'])->name('dashboard.lembaga');
+            Route::post("/store", [LembagaController::class, 'store'])->name('dashboard.lembaga.store');
+            Route::delete("/{id}", [LembagaController::class, 'destroy'])->name('dashboard.lembaga.destroy');
+            Route::post("/{id}/warga/attach", [LembagaController::class, 'attachMember'])->name('dashboard.lembaga.member.attach');
+            Route::post("/{id}/warga/detach", [LembagaController::class, 'detachhMember'])->name('dashboard.lembaga.member.detach');
         });
 
         Route::prefix('perangkat')->group(function () {

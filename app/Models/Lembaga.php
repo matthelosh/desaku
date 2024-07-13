@@ -10,6 +10,7 @@ class Lembaga extends Model
     use HasFactory;
 
     protected $fillable = [
+        'kode',
         'nama',
         'tipe',
         'deskripsi',

@@ -4,7 +4,7 @@ import { Head, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
 
 const page = usePage()
-
+const lebar = computed(() => window.innerWidth <= 414 ? 'xs' : 'sm')
 const data = computed(() => page.props.data)
 </script>
 
@@ -13,8 +13,8 @@ const data = computed(() => page.props.data)
 
     <DashLayout>
        <el-container>
-            <el-row :gutter="20" class="w-full">
-                <el-col :span="8">
+            <el-row :gutter="lebar == 'xs' ? 0 : 20" class="w-full">
+                <el-col :span="8" :xs="24">
                     <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-red-500 h-[200px]">
                         <template #default>
                             <h3 class="font-bold text-xl uppercase tracking-wide text-sky-50">
@@ -24,7 +24,7 @@ const data = computed(() => page.props.data)
                         </template>
                     </el-card>
                 </el-col>
-                <el-col :span="8">
+                <el-col :span="8" :xs="24">
                     <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-blue-500 h-[200px]">
                         <template #default>
                             <h3 class="font-bold text-xl uppercase tracking-wide text-sky-50">
@@ -34,7 +34,7 @@ const data = computed(() => page.props.data)
                         </template>
                     </el-card>
                 </el-col>
-                <el-col :span="8">
+                <el-col :span="8" :xs="24">
                     <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-orange-500 h-[200px]">
                         <template #default>
                             <h3 class="font-bold text-xl uppercase tracking-wide text-sky-50">
@@ -44,7 +44,7 @@ const data = computed(() => page.props.data)
                         </template>
                     </el-card>
                 </el-col>
-                <el-col :span="8">
+                <el-col :span="8" :xs="24">
                     <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-violet-500 h-[200px]">
                         <template #default>
                             <h3 class="font-bold text-xl uppercase tracking-wide text-sky-50">
@@ -54,7 +54,7 @@ const data = computed(() => page.props.data)
                         </template>
                     </el-card>
                 </el-col>
-                <el-col :span="8">
+                <el-col :span="8" :xs="24">
                     <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-indigo-500 h-[200px]">
                         <template #default>
                             <h3 class="font-bold text-xl uppercase tracking-wide text-sky-50">
@@ -64,7 +64,7 @@ const data = computed(() => page.props.data)
                         </template>
                     </el-card>
                 </el-col>
-                <el-col :span="8">
+                <el-col :span="8" :xs="24">
                     <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-sky-500 h-[200px]">
                         <template #default>
                             <h3 class="font-bold text-xl uppercase tracking-wide text-sky-50">

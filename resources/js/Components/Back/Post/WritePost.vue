@@ -5,6 +5,7 @@ import { Icon } from '@iconify/vue'
 import axios from 'axios'
 import { Doc, Text, History, Paragraph, Dropcursor, FontFamily, Bold, Underline, Italic, Strike, Heading, Link, Color, BulletList, OrderedList, TextAlign, LineHeight, Indent, Blockquote, Image, Table, Iframe, HorizontalRule, Fullscreen, Print, SelectAll } from 'element-tiptap-vue3-fixed'
 import { ElNotification } from 'element-plus'
+import 'element-plus/theme-chalk/display.css'
 
 const page = usePage()
 const props = defineProps({ selectedPost: Object})
@@ -63,6 +64,14 @@ const onCoverPicked = (e) => {
     fileCover.value = file
 }
 
+const togglePostProp = () => {
+    const postContent = document.querySelector('.post-content')
+    const postProp = document.querySelector('.post-prop')
+
+    postContent.classList.toggle('hidden-sm-and-down')
+    postProp.classList.toggle('hidden-sm-and-down')
+}
+
 onBeforeMount(() => {
     getCategories()
     if (props.selectedPost !== null) {
@@ -74,11 +83,14 @@ onBeforeMount(() => {
 <template>
 <div>
     <el-row :gutter="20" class="w-full">
-        <el-col :span="20">
+        <el-col :span="20" :xs="24" class="post-content">
             <el-input v-model="pos.title" placeholder="Masukkan Judul Tulisan" size="large" class="mb-4"></el-input>
             <element-tiptap v-model:content="pos.content" :extensions="extensions" />
         </el-col>
-        <el-col :span="4">
+        <el-button type="primary"  class="fixed -right-6 md:hidden" @click="togglePostProp">
+            <Icon icon="mdi:menu-open" class="text-lg" />
+        </el-button>
+        <el-col :span="4" :xs="24" class="hidden-sm-and-down post-prop">
             <el-card shadow="hover">
                 <span class="flex gap-2 justify-center">
                     <el-button type="primary" block @click="simpan">Simpan Tulisan</el-button>

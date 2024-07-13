@@ -46,6 +46,11 @@ const onPageUpdated = (e) => {
     current.value = e[0].id
 }
 
+const lebar = computed(() => {
+    const width = window.innerWidth <= 414 ? 'xs' : 'sm'
+    return width
+})
+
 const hapus = async(id) => {
     router.delete(route('dashboard.agenda.destroy', {id: id}), {
         onSuccess: page => {
@@ -57,7 +62,7 @@ const hapus = async(id) => {
 
 <template>
     <div class="list-agenda">
-        <VCalendar expanded :attributes="attributes" locale="id" @did-move="onPageUpdated" :columns="4" :rows="3" :min-date="new Date(yearNow+'-01-01-')" :max-date="new Date(yearNow+'-12-31')" >
+        <VCalendar expanded :attributes="attributes" locale="id" @did-move="onPageUpdated" :columns="lebar == 'xs' ? 1 : 4" :rows="lebar == 'xs' ? 1 : 3" :min-date="new Date(yearNow+'-01-01-')" :max-date="new Date(yearNow+'-12-31')" >
             <template #dayContent>
 
             </template>

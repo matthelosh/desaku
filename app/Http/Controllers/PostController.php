@@ -41,7 +41,12 @@ class PostController extends Controller
     public function uploadImage(Request $request)
     {
         try {
-            return response()->json(['url' => 'https://loremflickr.com/320/240']);
+            $file = $request->file('image');
+            $name = Str::ulid(\now());
+            $ext = $file->getClientOriginalExtension();
+
+            $store = Storage::putFileAs('public/post/img/', $file, $name . '.' . $ext);
+            return response()->json(['url' => Storage::url($store)]);
         } catch (\Throwable $th) {
             throw $th;
         }

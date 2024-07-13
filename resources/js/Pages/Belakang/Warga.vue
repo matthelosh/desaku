@@ -3,8 +3,7 @@ import { ref, computed, defineAsyncComponent, onMounted } from 'vue'
 import { Head, usePage, router } from '@inertiajs/vue3'
 import { Icon } from '@iconify/vue'
 import DashLayout from '@/Layouts/DashLayout.vue'
-// import NProgress from 'nprogress'
-const ProgressIndicator = defineAsyncComponent(() => import('@/Components/ProgressIndicator.vue'))
+import { lebar } from '@/helpers/layout.js'
 const FormWarga = defineAsyncComponent(() => import('@/Components/Back/Warga/FormWarga.vue'))
 const mode = ref('list')
 const selectedWarga = ref(null)
@@ -14,7 +13,7 @@ const datas = computed(() => {
     return page.props.wargas.filter(warga => warga.nama.toLowerCase().includes(search.value.toLowerCase()))
 })
 
-const progressIndicator = ref(null)
+const progressIndicator = ref(false)
 
 const tambah = () => {
     mode.value = 'tambah'
@@ -28,12 +27,11 @@ const edit = (item) => {
 const hapus = async(id) => {
     router.delete(route('dashboard.warga.destroy', {id: id}), {
         onStart: visit => {
-            progressIndicator.value.message = 'Masih Proses'
-            progressIndicator.value.start()
+            progressIndicator.value = true
         },
         onProgress: progress => console.log(progress),
         onSuccess: page => {
-            progressIndicator.value.finish(100)
+            progressIndicator.value = false
             router.reload({only: ['wargas']})
         },
         onError: errs => console.log(errs)
@@ -49,12 +47,11 @@ const closeForm = () => {
 
 <template>
     <Head title="Data Warga" />
-    <ProgressIndicator ref="progressIndicator"  />
+    <!-- <ProgressIndicator ref="progressIndicator"  /> -->
     <DashLayout>
         <el-container>
-            <el-row :gutter="20" class="w-full">
+            <el-row :gutter="lebar() == 'xs' ? 0 : 20" class="w-full">
                 <el-col :span="24">
-                    <TransitionGroup name="warga">
                         <el-card v-if="mode == 'list'" width="100%">
                             <template #header>
                                 <div class="flex justify-between items-center">
@@ -71,7 +68,7 @@ const closeForm = () => {
                                 </div>
                             </template>
                             <template #default>
-                                <el-table :data="datas" height="80vh">
+                                <el-table :data="datas" height="80vh" v-loading="progressIndicator" element-loading-text="`Tunggu sebentar`">
                                     <el-table-column label="#" type="index" width="80"></el-table-column>
                                     <el-table-column label="NIK" prop="nik" width="150"></el-table-column>
                                     <el-table-column label="Nama" prop="nama" sortable></el-table-column>
@@ -98,8 +95,9 @@ const closeForm = () => {
                                 </el-table>
                             </template>
                         </el-card>
-                        <FormWarga v-if="mode == 'tambah'" :selectedWarga="selectedWarga" @close="closeForm" />
-                    </TransitionGroup>
+                        <Transition name="warga">
+                            <FormWarga v-if="mode == 'tambah'" :selectedWarga="selectedWarga" @close="closeForm" />
+                        </Transition>
                 </el-col>
             </el-row>
         </el-container>
@@ -108,7 +106,7 @@ const closeForm = () => {
 
 <style scoped>
 .warga-enter-active {
-    transition: all .5s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 .warga-leave-active {
     transition: all .2s ease-in-out;

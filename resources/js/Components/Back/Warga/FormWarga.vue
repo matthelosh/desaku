@@ -21,10 +21,6 @@ const getData = () => {
     axios.get(route('dashboard.warga.alamat'))
         .then(res => rts.value = res.data.rts)
 }
-// await getData()
-// const rws = computed(() => {
-//     return (!warga.value.dusun_id || mode.value == 'edit') ? alamat.value.rws :  alamat.value.rws.filter(rw => rw.dusun_id == warga.value.dusun_id)
-// })
 
 const onFotoPicked = (e) => {
     const file = e.target.files[0]
@@ -60,20 +56,7 @@ const simpan = async() => {
 onBeforeMount(async () => {
     await getData()
     mode.value = props.selectedWarga ? 'edit' : 'tambah'
-    warga.value = props.selectedWarga ?? {
-    // kk_id : '35079787879898',
-    // nik: '1234567890',
-    // nama: 'Bejo Kumayangan',
-    // jk: 'Laki-laki',
-    // tempat_lahir: 'Tulungagung',
-    // tanggal_lahir: '1990-09-13',
-    // agama: 'Islam',
-    // pendidikan: 'S1',
-    // pekerjaan: 'Karyawan Swasta',
-    // ayah: 'Tukiman',
-    // ibu: 'Mariyati',
-    // foto: '/img/pamong.jpg'
-    }
+    warga.value = props.selectedWarga ?? {}
 })
 </script>
 
@@ -136,26 +119,17 @@ onBeforeMount(async () => {
                                             <el-select v-model="warga.rt_id" placeholder="Pilih RT" filterable @change="onRtPicked">
                                                 <el-option v-for="rt in rts" :key="rt.id" :value="rt.id" :label="rt.nama"></el-option>
                                             </el-select>
-                                            <!-- <el-select v-model="warga.dusun_id" placeholder="Pilih Dusun">
-                                                <el-option v-for="dusun in alamat.dusuns" :key="dusun.id" :value="dusun.id" :label="dusun.nama"></el-option>
-                                            </el-select> -->
                                         </el-form-item>
                                     </el-col>
                                 </el-row>
                                 <el-row>
                                     <el-col :span="12">
                                         <el-form-item label="RW" >
-                                            <!-- <el-select v-model="warga.rw_id" placeholder="Pilih RW" filterable>
-                                                <el-option v-for="rw in rws" :value="rw.id" :key="rw.id" :label="rw.nama"></el-option>
-                                            </el-select> -->
                                             {{ warga.rw ?? '' }}
                                         </el-form-item>
                                     </el-col>
                                     <el-col :span="12">
                                         <el-form-item label="Dusun" >
-                                            <!-- <el-select v-model="warga.rt_id" placeholder="Pilih RT" filterable @change="onRtPicked">
-                                                <el-option v-for="rt in rts" :key="rt.id" :value="rt.id" :label="rt.nama"></el-option>
-                                            </el-select> -->
                                             {{ warga.dusun ?? '' }}
                                         </el-form-item>
                                     </el-col>

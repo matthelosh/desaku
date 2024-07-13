@@ -15,9 +15,18 @@ class WargaController extends Controller
     public function index(Request $request)
     {
         try {
-            return Inertia::render('Belakang/Warga', [
-                'wargas' => Warga::with('rt', 'rw', 'dusun')->get()
-            ]);
+            if (!$request->query('lembagaId')) {
+                return Inertia::render('Belakang/Warga', [
+                    'wargas' => Warga::with('rt', 'rw', 'dusun')->get()
+                ]);
+            } else {
+                $lembagaId = $request->query('lembagaId');
+                $wargas = Warga::whereDoesntHave('lembaga', function ($q) use ($lembagaId) {
+                    $q->where('lembagas.id', $lembagaId);
+                })->with('rt.rw.dusun')->get();
+
+                return response()->json(['wargas' => $wargas]);
+            }
         } catch (\Throwable $th) {
             throw $th;
         }

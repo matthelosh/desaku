@@ -8,6 +8,13 @@ import { useProgress } from '@/composable/useProgress';
 import SideMenu from '@/Layouts/SideMenu.vue'
 const { isLoading } = useProgress()
 
+const toggleSide = () => {
+    const side = document.querySelector('.side-menu')
+    const siteTItle = document.querySelector('.site-title')
+    side.classList.toggle("hidden")
+    siteTItle.classList.toggle('hidden')
+}
+
 onMounted(() => {
     // const instance = getCurrentInstance();
     // instance.appContext.config.globalProperties.$progress = progress.value
@@ -17,12 +24,17 @@ onMounted(() => {
 <template>
     <div class="common-layout">
         <el-container>
-            <el-aside class="bg-slate-200 h-screen hidden md:block">
+            <el-aside class="bg-slate-200 side-menu h-screen hidden md:block transition-all duration-1000 delay-300 ease-in-out">
                 <SideMenu />
             </el-aside>
             <el-container>
                     <el-header class="bg-sky-600 flex items-center justify-between p-0">
-                        <h3 class="text-white uppercase font-bold">Manajemen Informasi Desa Samar</h3>
+                        <h3 class="text-white uppercase font-bold flex items-center ">
+                            <Icon icon="mdi:menu" class="text-lg text-white mr-2 md:hidden" @click="toggleSide" />
+                            <span class="site-title">
+                                M<span class="hidden md:inline">anajemen </span>I<span class="hidden md:inline">nformasi </span>D<span class="hidden md:inline">esa</span> Samar
+                            </span>
+                        </h3>
                         <div class="header-items flex items-center gap-4">
                             <Link href="/" class="flex items-center text-white">
                                 <Icon icon="mdi:home-export-outline" />

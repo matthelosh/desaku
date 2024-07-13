@@ -31,7 +31,7 @@ onBeforeMount(() => {
                             <el-tag type="primary">{{ post.type }}</el-tag>
                             <el-tag type="warning">{{ post.category_id }}</el-tag>
                         </div>
-                        <p class="mb-2">{{ post.content.substring(0, 200) }}</p>
+                        <p class="mb-2" v-html="post.content.substring(0, 200)"></p>
                         <Link :href="`/berita/${post.slug}`" class="text-sky-600 hover:underline mt-6">Selengkapnya ...</Link>
                         
                     </div>
