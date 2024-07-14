@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('dusuns', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 100);
-            $table->string('kasun', 100);
+            $table->integer('ketua_id');
             $table->text('deskripsi');
             $table->timestamps();
         });

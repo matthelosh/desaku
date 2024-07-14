@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('identitas', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_pum', 40)->nullable();
             $table->string('nama', 191);
             $table->string('status', 20);
             $table->string('kecamatan', 100);

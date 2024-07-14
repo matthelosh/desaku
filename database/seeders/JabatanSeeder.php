@@ -14,7 +14,7 @@ class JabatanSeeder extends Seeder
     public function run(): void
     {
         $jabatans = [
-            'Kepala Desa', 'Sekretaris', 'Kaur Keuangan', 'Kaur Perencanaan', 'Kaur Tu dan Umum', 'Kasi Kesejahteraan', 'Kasi Pelayanan', 'Kasi Pemerintahan', 'Ketua Dusun', 'Ketua RW', 'Ketua RT'
+            'Kepala Desa', 'Sekretaris', 'Kaur Keuangan', 'Kaur Perencanaan', 'Kaur Tu dan Umum', 'Kasi Kesejahteraan', 'Kasi Pelayanan', 'Kasi Pemerintahan'
         ];
 
         foreach ($jabatans as $jabatan) {

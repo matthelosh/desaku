@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('rts', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 30);
-            $table->string('ketua', 60);
+            $table->integer('ketua_id');
             $table->integer('rw_id');
-            $table->integer('dusun_id');
             $table->timestamps();
         });
     }

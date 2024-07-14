@@ -50,7 +50,7 @@ onMounted(() => {
                             </el-popover>
                         </div>
                     </el-header>
-                <el-main class="bg-sky-50 max-h-[94.5vh]" >
+                <el-main class="bg-sky-50 h-[94.5vh] max-h-[94.5vh]" >
                     <progress-indicator v-if="isLoading" ref="progress"></progress-indicator>
                     <Transition name="pindah" appear>
                         <slot />

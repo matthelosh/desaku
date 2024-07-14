@@ -14,7 +14,19 @@ class LembagaController extends Controller
         try {
             return Inertia::render('Belakang/Lembaga', [
                 'data' => [
-                    'dusuns' => Dusun::with('rws.rts.wargas')->get(),
+                    'dusuns' => Dusun::with([
+                        'rws' => function ($q) {
+                            $q->with('ketua');
+                            $q->with([
+                                'rts' => function ($rt) {
+                                    $rt->with('ketua');
+                                    $rt->with('wargas');
+                                }
+                            ]);
+                        }
+                    ])
+
+                        ->with('kasun')->get(),
                     'lembagas' => Lembaga::with('members.rt.rw.dusun')->get(),
                 ]
             ]);

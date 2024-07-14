@@ -12,9 +12,8 @@ class Rt extends Model
 
     protected $fillable = [
         'nama',
-        'ketua',
+        'ketua_id',
         'rw_id',
-        'dusun_id'
     ];
 
 
@@ -31,5 +30,10 @@ class Rt extends Model
     function wargas()
     {
         return $this->hasMany(Warga::class);
+    }
+
+    function ketua()
+    {
+        return $this->belongsTo(Warga::class, 'ketua_id', 'id');
     }
 }

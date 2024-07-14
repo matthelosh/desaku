@@ -16,18 +16,19 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         $this->call([
+            IdentitasSeeder::class,
             AdminSeeder::class,
             JabatanSeeder::class,
             AgendaSeeder::class,
             CategorySeeder::class,
             PamongSeeder::class,
             PostSeeder::class,
+            WargaSeeder::class,
             DusunSeeder::class,
             RwSeeder::class,
             RtSeeder::class,
             BusinessSeeder::class,
             ProductSeeder::class,
-            WargaSeeder::class,
             LembagaSeeder::class,
         ]);
     }

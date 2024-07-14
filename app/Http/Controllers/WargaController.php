@@ -57,12 +57,10 @@ class WargaController extends Controller
                     'tanggal_lahir' => $data['tanggal_lahir'],
                     'agama' => $data['agama'],
                     'rt_id' => $data['rt_id'],
-                    'rw_id' => $data['rw_id'],
-                    'dusun_id' => $data['dusun_id'],
                     'pendidikan' => $data['pendidikan'],
                     'pekerjaan' => $data['pekerjaan'],
                     'ayah' => $data['ayah'] ?? null,
-                    'ibu' => $data['ibu'],
+                    'ibu' => $data['ibu'] ?? null,
                     'foto' => $foto ?? null
                 ]
             );

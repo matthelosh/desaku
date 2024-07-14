@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Rt;
+use App\Models\Rw;
+use App\Models\Warga;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 
 class RtSeeder extends Seeder
 {
@@ -14,6 +15,15 @@ class RtSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::unprepared(File::get('database/rts_2024-07-10.sql'));
+        $rws = Rw::get()->map(fn ($rw) => $rw->id);
+        for ($r = 1; $r < 48; $r++) {
+            $wargas = Warga::whereRtId($r)->get()->map(fn ($warga) => $warga->id);
+            Rt::create([
+                'id' => $r,
+                'nama' => 'RT ' . ($r < 10 ? '00' . $r : '0' . $r),
+                'rw_id' => fake()->randomElement($rws),
+                'ketua_id' => fake()->randomElement($wargas),
+            ]);
+        }
     }
 }

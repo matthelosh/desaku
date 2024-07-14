@@ -39,8 +39,9 @@ const hapus = async(id) => {
 }
 
 const closeForm = () => {
-    mode.value = 'list'
+    // alert('halo')
     selectedWarga.value = null
+    mode.value = 'list'
 }
 
 </script>
@@ -52,6 +53,7 @@ const closeForm = () => {
         <el-container>
             <el-row :gutter="lebar() == 'xs' ? 0 : 20" class="w-full">
                 <el-col :span="24">
+                    <Transition name="warga">
                         <el-card v-if="mode == 'list'" width="100%">
                             <template #header>
                                 <div class="flex justify-between items-center">
@@ -68,7 +70,7 @@ const closeForm = () => {
                                 </div>
                             </template>
                             <template #default>
-                                <el-table :data="datas" height="80vh" v-loading="progressIndicator" element-loading-text="`Tunggu sebentar`">
+                                <el-table :data="datas.slice(0,20)" height="80vh" v-loading="progressIndicator" element-loading-text="`Tunggu sebentar`">
                                     <el-table-column label="#" type="index" width="80"></el-table-column>
                                     <el-table-column label="NIK" prop="nik" width="150"></el-table-column>
                                     <el-table-column label="Nama" prop="nama" sortable></el-table-column>
@@ -95,6 +97,7 @@ const closeForm = () => {
                                 </el-table>
                             </template>
                         </el-card>
+                    </Transition>
                         <Transition name="warga">
                             <FormWarga v-if="mode == 'tambah'" :selectedWarga="selectedWarga" @close="closeForm" />
                         </Transition>
@@ -114,10 +117,10 @@ const closeForm = () => {
 
 .warga-enter-from {
     opacity: 0;
-    transform: translateX(-20px);
+    transform: translateX(-50px);
 }
 .warga-leave-to {
     opacity: 0;
-    transform: translateX(20px);
+    transform: translateX(50px);
 }
 </style>

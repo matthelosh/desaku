@@ -11,10 +11,8 @@ const page = usePage()
 const props = defineProps({selectedWarga: Object})
 const emit = defineEmits(['close'])
 
-const warga = ref({
-    
-})
-
+const warga = ref({})
+const loading = ref(false)
 const foto = ref(null)
 const rts = ref([])
 const getData = () => {
@@ -26,7 +24,6 @@ const onFotoPicked = (e) => {
     const file = e.target.files[0]
     foto.value = file
     warga.value.foto = URL.createObjectURL(file)
-    // console.log(e)
 }
 
 const onRtPicked = (e) => {
@@ -38,17 +35,17 @@ const onRtPicked = (e) => {
 }
 
 const simpan = async() => {
-    // console.log(warga.value)
     let payload = {
         data: warga.value
     }
 
     if (foto.value !== null) payload.fileFoto = foto.value
-
+    loading.value = true
     router.post(route('dashboard.warga.store'), payload, {
-        onStart: visit => console.log(visit),
-        onProgress: progress => console.log(progress),
-        onSuccess: page => router.reload({only: ['wargas']}),
+        onSuccess: page => {
+            loading.value = false
+            emit('close')
+        },
         onError: errs => console.log(errs)
     })
 }
@@ -57,11 +54,13 @@ onBeforeMount(async () => {
     await getData()
     mode.value = props.selectedWarga ? 'edit' : 'tambah'
     warga.value = props.selectedWarga ?? {}
+    warga.value.rw = props.selectedWarga ? props.selectedWarga.rw.nama : ''
+    warga.value.dusun = props.selectedWarga ? props.selectedWarga.dusun.nama : ''
 })
 </script>
 
 <template>
-    <el-card>
+    <el-card v-loading="loading">
         <template #header>
             <div class="flex justify-between items-center">
                 <h3>Formulir Tambah Warga</h3>
@@ -79,7 +78,7 @@ onBeforeMount(async () => {
                 <el-row class="w-full" :gutter="20">
                     <el-col :span="16">
                         <div class="border rounded bg-slate-100 p-2">
-                            <el-form v-model="warga" label-width="200">
+                            <el-form v-model="warga" label-width="200" >
                                 <el-form-item label="NIK" >
                                     <el-input v-model="warga.nik" placeholder="Masukkan Nomor KTP"></el-input>
                                 </el-form-item>
@@ -166,7 +165,7 @@ onBeforeMount(async () => {
                         </div>
                     </el-col>
                     <el-col :span="8">
-                        <el-card>
+                        <el-card shadow="hover">
                             <template #header>
                                 <div class="flex items-center justify-between">
                                 <h1 class="text-md font-bold text-slate-700 tracking-wide">Pas Foto</h1>

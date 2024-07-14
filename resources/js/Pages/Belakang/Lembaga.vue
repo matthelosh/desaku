@@ -94,18 +94,11 @@ const data = computed(() => page.props.data)
                                                 <h3 class="font-bold">Anggota</h3>
                                                 <el-table :data="props.row.members" :border="true">
                                                     <el-table-column label="#" type="index" width="50"></el-table-column>
-                                                    <el-table-column label="Nama" prop="nama" width="160"></el-table-column>
+                                                    <el-table-column label="Nama" prop="nama" ></el-table-column>
                                                     <el-table-column label="Jabatan" prop="pivot.jabatan" width="160"></el-table-column>
                                                     <el-table-column label="Alamat">
                                                         <template #default="scope">
                                                             {{ scope.row.rt.nama }} {{ scope.row.rt.rw.nama }} {{ scope.row.rt.rw.dusun.nama }}
-                                                        </template>
-                                                    </el-table-column>
-                                                    <el-table-column label="Opsi" width="100">
-                                                        <template #default="scope">
-                                                            <el-button type="danger" circle size="small">
-                                                                <Icon icon="mdi:account-remove" />
-                                                            </el-button>
                                                         </template>
                                                     </el-table-column>
                                                 </el-table>
@@ -119,14 +112,18 @@ const data = computed(() => page.props.data)
                 <el-col :span="12" :xs="24">
                         <el-card class="mt-4 md:mt-0">
                             <template #header>
-                                <div class="toolbar flex jutify-between items-center">
+                                <div class="toolbar flex justify-between items-center">
                                     <h3 class="font-bold uppercase">Lembaga Teritorial</h3>
+
+                                    <el-button circle size="small" type="primary">
+                                        <icon icon="mdi:plus" class="text-lg" />
+                                    </el-button>
                                 </div>
                             </template>
                                 <el-table :data="data.dusuns" max-height="82vh">
                                     <el-table-column label="#" type="index" width="60"></el-table-column>
                                     <el-table-column label="Dusun" prop="nama" width="250"></el-table-column>
-                                    <el-table-column label="Kasun" prop="kasun" ></el-table-column>
+                                    <el-table-column label="Kasun" prop="kasun.nama" ></el-table-column>
                                     <el-table-column label="Jml RW" >
                                         <template #default="scope">
                                             {{ scope.row.rws.length }}
@@ -139,7 +136,11 @@ const data = computed(() => page.props.data)
                                                 <el-table :data="props.row.rws" :border="true">
                                                     <el-table-column label="#" type="index" width="60"></el-table-column>
                                                     <el-table-column label="RW" prop="nama" width="100"></el-table-column>
-                                                    <el-table-column label="Ketua" prop="ketua" ></el-table-column>
+                                                    <el-table-column label="Ketua" >
+                                                        <template #default="scope">
+                                                            {{ scope.row.ketua.nama }}
+                                                        </template>
+                                                    </el-table-column>
                                                     <el-table-column label="Jml RT" >
                                                         <template #default="scope">
                                                             {{ scope.row.rts.length }}
@@ -152,7 +153,7 @@ const data = computed(() => page.props.data)
                                                                 <el-table :data="props.row.rts">
                                                                     <el-table-column label="#" type="index" width="60"></el-table-column>
                                                                     <el-table-column label="RT" prop="nama" width="100"></el-table-column>
-                                                                    <el-table-column label="Ketua" prop="ketua" ></el-table-column>
+                                                                    <el-table-column label="Ketua" prop="ketua.nama" ></el-table-column>
                                                                     <el-table-column label="Jml Warga" >
                                                                         <template #default="scope">
                                                                             {{ scope.row.wargas.length }}

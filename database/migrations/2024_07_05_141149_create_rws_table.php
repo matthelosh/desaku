@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('rws', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 30);
-            $table->string('ketua', 60);
+            $table->integer('ketua_id');
             $table->integer('dusun_id');
             $table->timestamps();
         });

@@ -11,7 +11,7 @@ class Dusun extends Model
 
     protected $fillable = [
         'nama',
-        'kasun',
+        'ketua_id',
         'deskripsi'
     ];
 
@@ -23,5 +23,10 @@ class Dusun extends Model
     public function rts()
     {
         $this->hasManyThrough(Rt::class, Rw::class);
+    }
+
+    public function kasun()
+    {
+        return $this->belongsTo(Warga::class, 'ketua_id', 'id');
     }
 }

@@ -30,17 +30,17 @@ const pamongs = page.props.data.pamongs
         <!-- {{ pamongs }} -->
         <el-table :data="pamongs" height="85vh">
             <el-table-column label="NIK" prop="nik" width="200"></el-table-column>
-            <el-table-column label="Foto" width="200">
+            <el-table-column label="Foto" width="120">
                 <template #default="scope">
                     <el-image :src="scope.row.foto" alt="Foto" style="width: 70px; height: 70px; border-radius: 50%;" fit="cover" :lazy="true" />
                 </template>
             </el-table-column>
-            <el-table-column label="Nama" width="200">
+            <el-table-column label="Nama" width="250">
                 <template #default="scope">
                     {{ scope.row.nama }}
                 </template>
             </el-table-column>
-            <el-table-column label="Jenis Kelamin" width="150">
+            <el-table-column label="Jenis Kelamin" width="100">
                 <template #default="scope">
                    {{ scope.row.jk }}
                 </template>
@@ -50,7 +50,7 @@ const pamongs = page.props.data.pamongs
                    {{ scope.row.tempat_lahir }}, {{ dayjs(scope.row.tanggal_lahir).format('DD MMM YYYY') }}
                 </template>
             </el-table-column>
-            <el-table-column label="Jabatan" >
+            <el-table-column label="Jabatan" width="200">
                 <template #default="scope">
                    {{ scope.row.jabatan.nama }}
                 </template>
