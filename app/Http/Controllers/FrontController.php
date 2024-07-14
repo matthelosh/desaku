@@ -64,7 +64,7 @@ class FrontController extends Controller
     {
         try {
             return Inertia::render('Depan/Berita', [
-                'posts' => Post::whereCategoryId('Berita')
+                'posts' => Post::whereCategoryId('Berita')->get()
             ]);
         } catch (\Throwable $th) {
             throw $th;

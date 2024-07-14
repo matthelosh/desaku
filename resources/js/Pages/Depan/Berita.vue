@@ -13,9 +13,9 @@ dayjs.locale('id')
 
 const page = usePage()
 
-const filter = ref('')
+const filter = ref(null)
 const posts = computed(() => {
-    return !filter ? page.props.posts : page.props.posts.filter(post => post.content.toLowerCase().includes(filter.value.toLowerCase()))
+    return filter.value === null ? page.props.posts.slice(0, 10) : page.props.posts.filter(post => post.content.toLowerCase().includes(filter.value.toLowerCase()))
 })
 
 </script>
@@ -25,12 +25,12 @@ const posts = computed(() => {
         <title>Kabar Desa Samar Tulungagung</title>
         <meta name="description" content="Hasil Pencarian dalam KAtegori Berita Desa Samar Kecamatan Pagerwojo Kabupaten Tulungagung" />
     </Head>
-    <div class="page bg-sky-200">
+    <div class="page bg-sky-100">
         <el-affix @change="onHeaderStuck">
             <Header />
         </el-affix>
         
-        <main class="bg-sky-100 py-8">
+        <main class="bg-sky-50 py-8">
             <el-container>
                 <el-row justify="center" class="w-full">
                     <el-col :span="16" :xs=24>
