@@ -70,6 +70,16 @@ class FrontController extends Controller
             throw $th;
         }
     }
+    public function beritaByCategory(Request $request, $category)
+    {
+        try {
+            return Inertia::render('Depan/Berita', [
+                'posts' => Post::whereCategoryId(ucfirst($category))->get()
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
     public function info(Request $request)
     {
         try {

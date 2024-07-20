@@ -48,4 +48,9 @@ class Warga extends Model
     {
         return $this->belongsToMany(Lembaga::class, 'anggotas')->withPivot('jabatan');
     }
+
+    public function pamong()
+    {
+        return $this->hasOne(Pamong::class, 'nik', 'nik');
+    }
 }

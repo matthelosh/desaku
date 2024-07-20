@@ -10,6 +10,8 @@ import { ElNotification } from 'element-plus'
 const page = usePage()
 const FormLembaga = defineAsyncComponent(() => import('@/Components/Back/Lembaga/FormLembaga.vue'))
 const MgmtMember = defineAsyncComponent(() => import('@/Components/Back/Lembaga/MgmtMember.vue'))
+const FormDusun = defineAsyncComponent(() => import('@/Components/Back/Lembaga/FormDusun.vue'))
+const FormRw = defineAsyncComponent(() => import('@/Components/Back/Lembaga/FormRw.vue'))
 const formLembaga = ref(false)
 const selectedLembaga = ref(null)
 const loading = ref(false)
@@ -43,6 +45,52 @@ const hapus = async(id) => {
             ElNotification({title: 'Info', message: page.props.flash.message, type: 'success'})
         }
     })
+}
+
+const formDusun = ref(false)
+const selectedDusun = ref({})
+const addDusun = () => {
+    formDusun.value = true
+}
+
+const editDusun = (item) => {
+    selectedDusun.value = item
+    formDusun.value = true
+}
+const closeFormDusun = () => {
+    formDusun.value = false
+    selectedDusun.value = {}
+}
+
+const hapusDusun = async(id) => {
+    router.delete(route('dashboard.dusun.destroy', {id: id}), {
+        onSuccess: page => ElNotification({title: 'Info', message: page.props.flash.message, type: 'success'}),
+        onerror: errs => console.log(errs)
+    })
+}
+
+const formRw = ref(false)
+const selectedRw = ref({})
+const addRw = (dusun) => {
+    // console.log(dusun)
+    selectedDusun.value = dusun
+    formRw.value = true
+}
+const editRw = (dusun, rw) => {
+    console.log(dusun, rw)
+    selectedDusun.value = dusun
+    selectedRw.value = rw
+    formRw.value = true
+}
+
+const closeFormRw = () => {
+    selectedDusun.value = {}
+    selectedRw.value = {}
+    formRw.value = false
+}
+const selectedRt = ref({})
+const addRt = () => {
+
 }
 
 const data = computed(() => page.props.data)
@@ -115,14 +163,18 @@ const data = computed(() => page.props.data)
                                 <div class="toolbar flex justify-between items-center">
                                     <h3 class="font-bold uppercase">Lembaga Teritorial</h3>
 
-                                    <el-button circle size="small" type="primary">
+                                    <el-button circle size="small" type="primary" @click="addDusun">
                                         <icon icon="mdi:plus" class="text-lg" />
                                     </el-button>
                                 </div>
                             </template>
                                 <el-table :data="data.dusuns" max-height="82vh">
                                     <el-table-column label="#" type="index" width="60"></el-table-column>
-                                    <el-table-column label="Dusun" prop="nama" width="250"></el-table-column>
+                                    <el-table-column label="Dusun" width="250">
+                                        <template #default="scope">
+                                            <el-button text type="primary" @click="editDusun(scope.row)">{{ scope.row.nama }}</el-button>
+                                        </template>
+                                    </el-table-column>
                                     <el-table-column label="Kasun" prop="kasun.nama" ></el-table-column>
                                     <el-table-column label="Jml RW" >
                                         <template #default="scope">
@@ -132,10 +184,19 @@ const data = computed(() => page.props.data)
                                     <el-table-column label="Detail" type="expand" width="200">
                                         <template #default="props">
                                             <div class="pl-4 py-4">
-                                                <h3 class="font-bold">Data RW</h3>
+                                                <div class="flex items-center justify-between px-1 py-2">
+                                                    <h3 class="font-bold">Data RW</h3>
+                                                    <el-button circle size="small" type="primary" @click="addRw(props.row)">
+                                                        <icon icon="mdi:plus" class="text-lg" />
+                                                    </el-button>
+                                                </div>
                                                 <el-table :data="props.row.rws" :border="true">
                                                     <el-table-column label="#" type="index" width="60"></el-table-column>
-                                                    <el-table-column label="RW" prop="nama" width="100"></el-table-column>
+                                                    <el-table-column label="RW"  width="100">
+                                                        <template #default="scope">
+                                                            <el-button text type="primary" @click="editRw(props.row, scope.row)">{{ scope.row.nama }}</el-button>
+                                                        </template>
+                                                    </el-table-column>
                                                     <el-table-column label="Ketua" >
                                                         <template #default="scope">
                                                             {{ scope.row.ketua.nama }}
@@ -167,6 +228,17 @@ const data = computed(() => page.props.data)
                                             </div>
                                         </template>
                                     </el-table-column>
+                                    <el-table-column label="Opsi" fixed="right" width="80">
+                                        <template #default="scope">
+                                            <el-popconfirm :title="`Hapus Dusun ${scope.row.nama}?`" @confirm="hapusDusun(scope.row.id)">
+                                                <template #reference>
+                                                    <el-button type="danger" circle size="small">
+                                                        <Icon icon="mdi:close" />
+                                                    </el-button>
+                                                </template>
+                                            </el-popconfirm>
+                                        </template>
+                                    </el-table-column>
                                 </el-table>
                             
                         </el-card>
@@ -176,4 +248,6 @@ const data = computed(() => page.props.data)
     </DashLayout>
     <FormLembaga v-if="formLembaga" :show="formLembaga" :selectedLembaga="selectedLembaga" @close="closeFormLembaga" />
     <MgmtMember v-if="mgmtMember" :show="mgmtMember" :selectedLembaga="selectedLembaga" @close="closeFormLembaga" />
+    <FormDusun v-if="formDusun" :show="formDusun" :selectedDusun="selectedDusun" @close="closeFormDusun" />
+    <FormRw v-if="formRw" :show="formRw" :selectedRw="selectedRw" :selectedDusun="selectedDusun" @close="closeFormRw" />
 </template>

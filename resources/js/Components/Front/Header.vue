@@ -10,7 +10,7 @@ const items = computed(() => menus)
 </script>
 
 <template>
-    <el-header class="main-nav bg-sky-200" style="height: 80px; display:flex; align-items:center;">
+    <el-header class="main-nav bg-sky-100" style="height: 80px; display:flex; align-items:center;">
         <div class="content h-14 flex items-center justify-between w-full">
             <Link href="/" class="title flex items-center gap-1 px-1">
                 <img src="/img/tulungagung.png" alt="Logo" class="h-14" />
@@ -22,17 +22,17 @@ const items = computed(() => menus)
             <nav class="navigasi flex items-center gap-2">
                 <div class="large-nav md:flex items-center justify-end flex-wrap uppercase hidden">
                     <template v-for="(menu, m) in items" :key="m">
-                        <Link v-if="menu.children.length < 1" :href="menu.url" class="px-4 text-sky-900 py-2 text-sm font-semibold hover:bg-sky-100 rounded hover:shadow-outline">{{ menu.label }}</Link>
-                        <el-popover v-if="menu.children.length > 0" width="auto">
+                        <Link v-if="menu.children?.length < 1" :href="route(menu.url)" class="px-4 text-sky-900 py-2 text-sm font-semibold rounded hover:shadow-outline">{{ menu.label }}</Link>
+                        <el-popover v-if="menu.children?.length > 0" width="auto">
                             <template #reference>
-                                <Link class="px-4 py-2 text-sm text-sky-900 font-semibold hover:bg-sky-100 rounded hover:shadow-outline flex items-start gap-1 justify-between" href="#">
+                                <Link class="px-4 py-2 text-sm text-sky-900 font-semibold  rounded hover:shadow-outline flex items-start gap-1 justify-between" href="#">
                                     {{ menu.label }}
                                     <Icon icon="mdi:menu-down" class="text-lg" />
                                 </Link>
                             </template>
                             <ol class="uppercase">
-                                <li v-for="(sub, s) in menu.children" :key="s" class="p-2 hover:bg-sky-50 hover:cursor-pointer">
-                                    <Link :href="sub.url" class=" text-sky-800 hover:text-sky-900">{{ sub.label }}</Link>
+                                <li v-for="(sub, s) in menu.children" :key="s" class="p-2 hover:bg-sky-100 hover:cursor-pointer">
+                                    <Link :href="route(sub.url)" class=" text-sky-800 hover:text-sky-900">{{ sub.label }}</Link>
                                 </li>
                             </ol>
                         </el-popover>
@@ -57,9 +57,9 @@ const items = computed(() => menus)
 </template>
 
 <style>
-.stuck {
+header.stuck {
     background-color: rgb(8, 36, 66)!important;
-    box-shadow: 0 5px 15px rgba(rgba(0,0,0,0.8));
+    box-shadow: 0 5px 15px rgba(0,0,0,0.8)!important;
     color: white!important;
 }
 

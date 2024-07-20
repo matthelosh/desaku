@@ -112,12 +112,12 @@ onBeforeMount(() => {
                                     </div>
                                 </div>
                             </template>
-                            <el-table :data="filteredNonMembers" max-height="80vh" v-loading="nonMembers.length < 1" @current-change="handleNonMemberSelection" highlight-current-row>
+                            <el-table :data="filteredNonMembers.slice(0,20)" max-height="80vh" v-loading="nonMembers.length < 1" @current-change="handleNonMemberSelection" highlight-current-row>
                                 <el-table-column label="#" type="index"></el-table-column>
                                 <el-table-column label="Nama" prop="nama" sortable></el-table-column>
                                 <el-table-column label="Alamat" >
                                     <template #default="scope">
-                                        <span>{{ scope.row.rt.nama }} / {{ scope.row.rt.rw.nama }}, Dusun {{ scope.row.rt.rw.dusun.nama }}</span>
+                                        <span>{{ scope.row.rt?.nama }} / {{ scope.row.rt?.rw?.nama }}, Dusun {{ scope.row.rt?.rw?.dusun?.nama }}</span>
                                     </template>
                                 </el-table-column>
                                 <el-table-column label="Opsi" width="150" fixed="right">

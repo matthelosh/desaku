@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { Head, Link, usePage } from '@inertiajs/vue3';
 import { Icon } from '@iconify/vue';
+import { onHeaderStuck } from '@/helpers/front'
 
 import Header from '@/Components/Front/Header.vue'
 import Hero from '@/Components/Front/Home/Hero.vue'
@@ -31,16 +32,6 @@ const props = defineProps({
 
 const page = usePage()
 
-const onHeaderStuck = (e) => {
-    const header = document.querySelector('.main-nav')
-    if (e) {
-        header.style.height = '60px'
-        header.style.transition = 'all .35s ease-in-out'
-    } else {
-        header.style.height = '80px'
-        header.style.transition = 'all .35s ease-in-out'
-    }
-}
 </script>
 
 <template>
@@ -167,7 +158,3 @@ const onHeaderStuck = (e) => {
     </div>
 </template>
 
-<style>
-
-
-</style>

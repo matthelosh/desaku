@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dusun;
+use App\Models\Jabatan;
 use App\Models\Rt;
 use App\Models\Rw;
 use App\Models\Warga;
@@ -12,9 +13,10 @@ use Inertia\Inertia;
 
 class WargaController extends Controller
 {
-    public function index(Request $request)
+    public function home(Request $request)
     {
         try {
+            // dd($request->query('lembagaId'));
             if (!$request->query('lembagaId')) {
                 return Inertia::render('Belakang/Warga', [
                     'wargas' => Warga::with('rt', 'rw', 'dusun')->get()
@@ -30,6 +32,14 @@ class WargaController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+
+    public function index()
+    {
+        $wargas =  Warga::whereDoesntHave('pamong')->get();
+
+        return response()->json(['datas' => ['wargas' => $wargas, 'jabatans' => Jabatan::all()]]);
     }
 
     public function store(Request $request)

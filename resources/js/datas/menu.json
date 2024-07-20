@@ -1,7 +1,8 @@
 [
     {
         "label": "Beranda",
-        "url": "/",
+        "url": "front.home",
+        "params": {},
         "children": []
     },
     {
@@ -10,15 +11,24 @@
         "children": [
             {
                 "label": "Sejarah",
-                "url": "/profil/sejarah"
+                "url": "front.profil",
+                "params": {
+                    "category_id": "sejarah"
+                }
             },
             {
                 "label": "Visi Misi",
-                "url": "/profil/visi"
+                "url": "front.profil",
+                "params": {
+                    "category_id": "visi"
+                }
             },
             {
                 "label": "Struktur Organisasi",
-                "url": "/profil/organisasi"
+                "url": "front.profil",
+                "params": {
+                    "category_id": "organisasi"
+                }
             }
         ]
     },
@@ -28,52 +38,33 @@
         "children": [
             {
                 "label": "Semua",
-                "url": "/berita"
+                "url": "post",
+                "params": {}
             },
             {
                 "label": "Kegiatan",
-                "url": "/berita/kegiatan"
+                "url": "post",
+                "params": {
+                    "category_id": "kegiatan"
+                }
             },
             {
                 "label": "Musyawarah",
-                "url": "/berita/musyawarah"
+                "url": "post",
+                "params": {
+                    "category_id": "musyawarah"
+                }
             }
         ]
     },
     {
         "label": "Produk Unggulan",
-        "url": "#",
-        "children": [
-            {
-                "label": "Semua",
-                "url": "/produk"
-            },
-            {
-                "label": "Kegiatan",
-                "url": "/berita/kegiatan"
-            },
-            {
-                "label": "Musyawarah",
-                "url": "/berita/musyawarah"
-            }
-        ]
+        "url": "front.produk",
+        "params": {}
     },
     {
         "label": "Potensi Wisata",
-        "url": "#",
-        "children": [
-            {
-                "label": "Semua",
-                "url": "/wisata"
-            },
-            {
-                "label": "Kegiatan",
-                "url": "/berita/kegiatan"
-            },
-            {
-                "label": "Musyawarah",
-                "url": "/berita/musyawarah"
-            }
-        ]
+        "url": "front.wisata",
+        "params": {}
     }
 ]
