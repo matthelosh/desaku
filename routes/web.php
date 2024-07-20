@@ -72,6 +72,10 @@ Route::middleware('auth')->group(function () {
                 Route::post('/store', [RwController::class, 'store'])->name('dashboard.rw.store');
                 Route::delete('/{id}', [RwController::class, 'destroy'])->name('dashboard.rw.destroy');
             });
+            Route::prefix('rt')->group(function () {
+                Route::post('/store', [RtController::class, 'store'])->name('dashboard.rt.store');
+                Route::delete('/{id}', [RtController::class, 'destroy'])->name('dashboard.rt.destroy');
+            });
         });
 
         Route::prefix('perangkat')->group(function () {

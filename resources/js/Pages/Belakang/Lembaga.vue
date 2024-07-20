@@ -12,6 +12,7 @@ const FormLembaga = defineAsyncComponent(() => import('@/Components/Back/Lembaga
 const MgmtMember = defineAsyncComponent(() => import('@/Components/Back/Lembaga/MgmtMember.vue'))
 const FormDusun = defineAsyncComponent(() => import('@/Components/Back/Lembaga/FormDusun.vue'))
 const FormRw = defineAsyncComponent(() => import('@/Components/Back/Lembaga/FormRw.vue'))
+const FormRt = defineAsyncComponent(() => import('@/Components/Back/Lembaga/FormRt.vue'))
 const formLembaga = ref(false)
 const selectedLembaga = ref(null)
 const loading = ref(false)
@@ -88,10 +89,28 @@ const closeFormRw = () => {
     selectedRw.value = {}
     formRw.value = false
 }
-const selectedRt = ref({})
-const addRt = () => {
 
+const formRt = ref(false)
+const selectedRt = ref({})
+const addRt = (rw) => {
+    formRt.value = true
+    selectedRw.value = rw
+    selectedDusun.value = page.props.data.dusuns.filter(dusun => dusun.rws.map(itemRw => itemRw.id).includes(rw.id))[0]
 }
+
+const editRt = (rw, rt) => {
+    selectedRw.value = rw
+    selectedDusun.value = page.props.data.dusuns.filter(dusun => dusun.rws.map(itemRw => itemRw.id).includes(rw.id))[0]
+    selectedRt.value = rt
+    formRt.value = true
+}
+const closeFormRt = () => {
+    formRt.value = false
+    selectedDusun.value = {}
+    selectedRw.value = {}
+    selectedRt.value = {}
+}
+
 
 const data = computed(() => page.props.data)
 </script>
@@ -163,8 +182,9 @@ const data = computed(() => page.props.data)
                                 <div class="toolbar flex justify-between items-center">
                                     <h3 class="font-bold uppercase">Lembaga Teritorial</h3>
 
-                                    <el-button circle size="small" type="primary" @click="addDusun">
+                                    <el-button size="small" type="primary" @click="addDusun" class="flex items-center gap-1">
                                         <icon icon="mdi:plus" class="text-lg" />
+                                        Tambah Dusun
                                     </el-button>
                                 </div>
                             </template>
@@ -186,8 +206,9 @@ const data = computed(() => page.props.data)
                                             <div class="pl-4 py-4">
                                                 <div class="flex items-center justify-between px-1 py-2">
                                                     <h3 class="font-bold">Data RW</h3>
-                                                    <el-button circle size="small" type="primary" @click="addRw(props.row)">
+                                                    <el-button  size="small" type="primary" @click="addRw(props.row)" class="mr-4 flex items-center gap-1">
                                                         <icon icon="mdi:plus" class="text-lg" />
+                                                        Tambah RW
                                                     </el-button>
                                                 </div>
                                                 <el-table :data="props.row.rws" :border="true">
@@ -210,10 +231,20 @@ const data = computed(() => page.props.data)
                                                     <el-table-column label="Detail" type="expand" width="200">
                                                         <template #default="props">
                                                             <div class="ml-4 my-4">
-                                                                <h3 class="font-bold">Data RT</h3>
+                                                                <div class="flex items-center justify-between  py-2">
+                                                                    <h3 class="font-bold">Data RT</h3>
+                                                                    <el-button size="small" type="primary" @click="addRt(props.row)" class="mr-6 flex items-center gap-1">
+                                                                        <icon icon="mdi:plus" class="text-lg" />
+                                                                        Tambah RT
+                                                                    </el-button>
+                                                                </div>
                                                                 <el-table :data="props.row.rts">
                                                                     <el-table-column label="#" type="index" width="60"></el-table-column>
-                                                                    <el-table-column label="RT" prop="nama" width="100"></el-table-column>
+                                                                    <el-table-column label="RT"width="100">
+                                                                        <template #default="scope">
+                                                                            <el-button text type="primary" @click="editRt(props.row, scope.row)">{{ scope.row.nama }}</el-button>
+                                                                        </template>
+                                                                    </el-table-column>
                                                                     <el-table-column label="Ketua" prop="ketua.nama" ></el-table-column>
                                                                     <el-table-column label="Jml Warga" >
                                                                         <template #default="scope">
@@ -250,4 +281,5 @@ const data = computed(() => page.props.data)
     <MgmtMember v-if="mgmtMember" :show="mgmtMember" :selectedLembaga="selectedLembaga" @close="closeFormLembaga" />
     <FormDusun v-if="formDusun" :show="formDusun" :selectedDusun="selectedDusun" @close="closeFormDusun" />
     <FormRw v-if="formRw" :show="formRw" :selectedRw="selectedRw" :selectedDusun="selectedDusun" @close="closeFormRw" />
+    <FormRt v-if="formRt" :show="formRt" :selectedRt="selectedRt" :selectedRw="selectedRw" :selectedDusun="selectedDusun" @close="closeFormRt" />
 </template>
