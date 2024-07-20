@@ -2,6 +2,7 @@
 import DashLayout from '@/Layouts/DashLayout.vue';
 import { Head, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
+import { Icon } from '@iconify/vue';
 
 const page = usePage()
 const lebar = computed(() => window.innerWidth <= 414 ? 'xs' : 'sm')
@@ -15,7 +16,7 @@ const data = computed(() => page.props.data)
        <el-container>
             <el-row :gutter="lebar == 'xs' ? 0 : 20" class="w-full">
                 <el-col :span="8" :xs="24">
-                    <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-red-500 h-[200px]">
+                    <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-gradient-to-br from-red-500 to-red-400 hover:bg-gradient-to-bl h-[200px]">
                         <template #default>
                             <h3 class="font-bold text-xl uppercase tracking-wide text-sky-50">
                                 Berita Desa
@@ -25,7 +26,7 @@ const data = computed(() => page.props.data)
                     </el-card>
                 </el-col>
                 <el-col :span="8" :xs="24">
-                    <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-blue-500 h-[200px]">
+                    <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-gradient-to-br from-blue-500 to-blue-400 hover:bg-gradient-to-bl h-[200px]">
                         <template #default>
                             <h3 class="font-bold text-xl uppercase tracking-wide text-sky-50">
                                 Pengumuman
@@ -35,7 +36,7 @@ const data = computed(() => page.props.data)
                     </el-card>
                 </el-col>
                 <el-col :span="8" :xs="24">
-                    <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-orange-500 h-[200px]">
+                    <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-gradient-to-br from-orange-500 to-orange-400 hover:bg-gradient-to-bl h-[200px]">
                         <template #default>
                             <h3 class="font-bold text-xl uppercase tracking-wide text-sky-50">
                                 Warga Desa
@@ -45,7 +46,7 @@ const data = computed(() => page.props.data)
                     </el-card>
                 </el-col>
                 <el-col :span="8" :xs="24">
-                    <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-violet-500 h-[200px]">
+                    <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-gradient-to-br from-violet-500 to-violet-400 hover:bg-gradient-to-bl h-[200px]">
                         <template #default>
                             <h3 class="font-bold text-xl uppercase tracking-wide text-sky-50">
                                 Potensi Wisata
@@ -55,21 +56,27 @@ const data = computed(() => page.props.data)
                     </el-card>
                 </el-col>
                 <el-col :span="8" :xs="24">
-                    <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-indigo-500 h-[200px]">
+                    <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-gradient-to-br from-indigo-500 to-indigo-400 hover:bg-gradient-to-bl transition-all duration-300 ease h-[200px]">
                         <template #default>
-                            <h3 class="font-bold text-xl uppercase tracking-wide text-sky-50">
-                                Data Potensi Usaha
-                            </h3>
+                            <div class="flex items-center justify-between relative" >
+                                <h3 class="font-bold text-xl uppercase tracking-wide text-sky-50">
+                                    Potensi Usaha
+                                </h3>
+                                <Icon icon="mdi:chart-box"  class="absolute right-0 text-white text-2xl hover:cursor-pointer hover:text-4xl transition-all duration-100 ease-in-out"/>
+                            </div>
                             <h1 class="text-8xl text-center text-white relative">{{ data.businesses.length }} <small class="text-2xl right-6 -ml-6">Perusahaan</small></h1>
                         </template>
                     </el-card>
                 </el-col>
                 <el-col :span="8" :xs="24">
-                    <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-sky-500 h-[200px]">
+                    <el-card class="card border border-sky-500 rounded-md mb-4 " body-class="bg-gradient-to-br from-sky-500 to-sky-400 hover:bg-gradient-to-bl transition-all duration-300 ease-in h-[200px]">
                         <template #default>
-                            <h3 class="font-bold text-xl uppercase tracking-wide text-sky-50">
-                                Produk Unggulan
-                            </h3>
+                            <div class="flex items-center justify-between relative">
+                                <h3 class="font-bold text-xl uppercase tracking-wide text-sky-50">
+                                    Produk Unggulan
+                                </h3>
+                                <Icon icon="mdi:chart-box"  class="absolute right-0 text-white text-2xl hover:cursor-pointer hover:text-4xl transition-all duration-100 ease-in-out"/>
+                            </div>
                             <h1 class="text-8xl text-center text-white relative">{{ data.produks.length }} <small class="text-2xl right-6 -ml-6">Produk</small></h1>
                         </template>
                     </el-card>
