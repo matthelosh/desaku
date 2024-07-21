@@ -48,10 +48,10 @@ const currentUrl = computed(() => window.location.href)
         <meta property="article:tag" content="website desa, desa samar, kabupaten tullungagung, desa.id" />
         <meta property="article:section" content="Berita" />
         <meta property="og:updated_time" :content="new Date()" />
-        <meta property="og:image" content="/img/kantor.jpg" />
-        <meta property="og:image:secure_url" content="/img/kantor.jpg" />
-        <meta property="og:image:width" content="1600" />
-        <meta property="og:image:height" content="900" />
+        <meta property="og:image" :content="`${currentUrl}img/kantor.jpg`" />
+        <meta property="og:image:secure_url" :content="`${currentUrl}img/kantor.jpg`" />
+        <meta property="og:image:width" content="1366" />
+        <meta property="og:image:height" content="768" />
         <meta property="og:image:alt" content="Kantor Desa Samar" />
         <meta property="og:image:type" content="image/jpg" />
         <meta property="article:published_time" content="2024-02-28T09:40:32+07:00" />
@@ -62,6 +62,7 @@ const currentUrl = computed(() => window.location.href)
             <div class="info w-full h-8 bg-sky-600 flex items-center justify-between px-8 text-white">
                 <span class="flex items-center gap-1"><Icon icon="mdi:phone-classic" /> 085767676</span>
                 <div class="right flex">
+                    <!-- {{currentUrl}} -->
                     <Link href="/login" v-if="!page.props.auth.user" class="flex items-center gap-1">
                         <span class="text-sm">Masuk</span>
                         <Icon icon="mdi:login-variant" />
