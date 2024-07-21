@@ -80,6 +80,7 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('perangkat')->group(function () {
             Route::get("/", [PamongController::class, 'index'])->name('dashboard.pamong');
+            Route::post("/store", [PamongController::class, 'store'])->name('dashboard.pamong.store');
         });
         Route::prefix('warga')->group(function () {
             Route::get("/", [WargaController::class, 'home'])->name('dashboard.warga');

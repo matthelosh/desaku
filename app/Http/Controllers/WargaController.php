@@ -19,7 +19,7 @@ class WargaController extends Controller
             // dd($request->query('lembagaId'));
             if (!$request->query('lembagaId')) {
                 return Inertia::render('Belakang/Warga', [
-                    'wargas' => Warga::with('rt', 'rw', 'dusun')->get()
+                    'wargas' => Warga::with('rt', 'rw', 'dusun', 'jabatan')->get()
                 ]);
             } else {
                 $lembagaId = $request->query('lembagaId');
@@ -37,7 +37,7 @@ class WargaController extends Controller
 
     public function index()
     {
-        $wargas =  Warga::whereDoesntHave('pamong')->get();
+        $wargas =  Warga::whereDoesntHave('jabatan')->get();
 
         return response()->json(['datas' => ['wargas' => $wargas, 'jabatans' => Jabatan::all()]]);
     }

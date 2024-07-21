@@ -9,6 +9,7 @@ dayjs.locale('id')
 
 import DashLayout from '@/Layouts/DashLayout.vue'
 import axios from 'axios'
+import { ElNotification } from 'element-plus'
 const mode = ref('list')
 const page = usePage()
 const loading =ref(false)
@@ -34,9 +35,25 @@ const onPejabatPicked = async(nik) => {
 
 const simpan = async() => {
     loading.value = true
-    setTimeout(() => {
-        loading.value = false
-    }, 1000)
+    router.post(route('dashboard.pamong.store'), {data: pamong.value}, {
+        onSuccess: page => {
+            ElNotification({title: 'Info', message: page.props.flash.message, type: 'success'})
+        },
+        onError: errs => {
+            Object.keys(errs).forEach(k => {
+                setTimeout(() => {
+                    ElNotification({title: 'Error', message: errs[k], type: 'error'})
+                })
+            })
+        }
+    })
+}
+
+const editPamong = (item) => {
+    // alert('edit')
+    pamong.value = item
+    selectedWarga.value = item.warga
+    mode.value = 'form'
 }
 
 onBeforeMount(() => {
@@ -64,22 +81,24 @@ onBeforeMount(() => {
                 <el-table-column label="NIK" prop="nik" width="200"></el-table-column>
                 <el-table-column label="Foto" width="120">
                     <template #default="scope">
-                        <el-image :src="scope.row.foto" alt="Foto" style="width: 70px; height: 70px; border-radius: 50%;" fit="cover" :lazy="true" />
+                        <el-image :src="scope.row.warga.foto" alt="Foto" style="width: 70px; height: 70px; border-radius: 50%;" fit="cover" :lazy="true" />
                     </template>
                 </el-table-column>
                 <el-table-column label="Nama" width="250">
                     <template #default="scope">
-                        {{ scope.row.nama }}
+                        <el-button plain type="primary" @click="editPamong(scope.row)"> 
+                            {{ scope.row.warga.nama }}
+                        </el-button>
                     </template>
                 </el-table-column>
                 <el-table-column label="Jenis Kelamin" width="100">
                     <template #default="scope">
-                    {{ scope.row.jk }}
+                    {{ scope.row.warga.jk }}
                     </template>
                 </el-table-column>
                 <el-table-column label="Tempat, Tgl Lahir" width="250">
                     <template #default="scope">
-                    {{ scope.row.tempat_lahir }}, {{ dayjs(scope.row.tanggal_lahir).format('DD MMM YYYY') }}
+                    {{ scope.row.warga.tempat_lahir }}, {{ dayjs(scope.row.warga.tanggal_lahir).format('DD MMM YYYY') }}
                     </template>
                 </el-table-column>
                 <el-table-column label="Jabatan" width="200">
@@ -89,7 +108,7 @@ onBeforeMount(() => {
                 </el-table-column>
                 <el-table-column label="Alamat" >
                     <template #default="scope">
-                    {{ scope.row.alamat }}
+                    {{ scope.row.warga.rt.nama }}/{{ scope.row.warga.rt.rw.nama }} Dusun {{ scope.row.warga.rt.rw.dusun.nama }}
                     </template>
                 </el-table-column>
                 <el-table-column label="Opsi" fixed="right" width="100" align="center">

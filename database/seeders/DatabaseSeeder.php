@@ -21,15 +21,15 @@ class DatabaseSeeder extends Seeder
             JabatanSeeder::class,
             AgendaSeeder::class,
             CategorySeeder::class,
+            WargaSeeder::class,
             PamongSeeder::class,
             PostSeeder::class,
-            WargaSeeder::class,
             DusunSeeder::class,
             RwSeeder::class,
             RtSeeder::class,
+            LembagaSeeder::class,
             BusinessSeeder::class,
             ProductSeeder::class,
-            LembagaSeeder::class,
         ]);
     }
 }

@@ -31,4 +31,9 @@ class Pamong extends Model
     {
         return $this->belongsTo(Jabatan::class);
     }
+
+    public function warga()
+    {
+        return $this->belongsTo(Warga::class, 'nik', 'nik');
+    }
 }
