@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('ip_address', 60);
             $table->text('user_agent');
             $table->text('visited_uri');
+            $table->string('country', 100)->nullable();
             $table->timestamp('visited_at')->default(now());
             $table->timestamps();
         });

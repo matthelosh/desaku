@@ -12,5 +12,6 @@ class Visitor extends Model
         'ip_address',
         'user_agent',
         'visited_uri',
+        'country'
     ];
 }

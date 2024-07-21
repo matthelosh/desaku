@@ -11,6 +11,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "staudenmeir/belongs-to-through": "^2.5",
+        "stevebauman/location": "^7.3",
         "tightenco/ziggy": "^2.0"
     },
     "require-dev": {
