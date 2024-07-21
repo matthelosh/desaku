@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\VisitorTracker;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::prefix('')->group(function () {
+Route::prefix('')->middleware(VisitorTracker::class)->group(function () {
     Route::get('/', [FrontController::class, 'home'])->name('front.home');
 
     Route::prefix('profil')->group(function () {
@@ -15,8 +16,8 @@ Route::prefix('')->group(function () {
 
     Route::prefix('berita')->group(function () {
         Route::get('/', [FrontController::class, 'berita'])->name('post');
-        Route::get('/{category_id}', [FrontController::class, 'beritaByCategory'])->name('post.category');
         Route::get('/{slug}', [FrontController::class, 'readPost'])->name('post.read');
+        Route::get('/{category_id}', [FrontController::class, 'beritaByCategory'])->name('post.category');
     });
     Route::prefix('info')->group(function () {
         Route::get('/', [FrontController::class, 'info'])->name('info');

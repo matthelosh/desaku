@@ -130,7 +130,13 @@ const currentUrl = computed(() => window.location.href)
                                  <div class="list-info">
                                     <CarouselPamong />
                                  </div>
-                                 
+                                 <div class="mt-2">&nbsp;</div>
+                                 <el-divider class="font-bold text-slate-600">Pengunjung:</el-divider>
+                                 <div class="visitor bg-white p-2 shadow rounded">
+                                    <p>Hari ini: {{ page.props.visitor.today }}</p>
+                                    <p>Semua: {{ page.props.visitor.total }}</p>
+                                    <p>Online: {{ page.props.visitor.online }}</p>
+                                 </div>
                         </el-col>
                     </el-row>
                 </el-container>

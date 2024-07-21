@@ -10,7 +10,7 @@ class PamongService
     {
         $queries = $request->query();
         if (count($queries) < 1) {
-            $pamongs = Pamong::orderBy('updated_at', 'DESC')->limit(9)->get();
+            $pamongs = Pamong::with('jabatan', 'warga')->orderBy('updated_at', 'DESC')->limit(9)->get();
         }
         return $pamongs;
     }

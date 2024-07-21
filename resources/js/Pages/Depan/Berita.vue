@@ -46,8 +46,8 @@ const posts = computed(() => {
                                     </el-breadcrumb-item>
                                     <el-breadcrumb-item :to="{path: '/berita'}">
                                         <template #default>
-                                            <Link class="flex" :href="`${posts[0].category_id.toLowerCase()}`">
-                                                {{ posts[0].category_id }}
+                                            <Link class="flex" :href="`${posts[0]?.category_id.toLowerCase()}`">
+                                                {{ posts[0]?.category_id }}
                                             </Link>
                                         </template>
                                     </el-breadcrumb-item>
@@ -58,14 +58,14 @@ const posts = computed(() => {
                             <img src="/img/kantor.jpg" alt="Cover" class="h-full w-full saturate-100 contrast-50 object-bottom object-cover">
                             <div class="overlay absolute top-0 right-0 bottom-0 left-0 bg-orange-100 flex items-center justify-center bg-opacity-50 mix-blend-overlay">
                                 <div class="text-center bg-white p-4">
-                                    <h1 class="text-4xl font-bold uppercase tracking-wide font-serif">{{ posts[0].category_id == 'Berita'? 'Kabar ' : 'Pengumuman ' }} Desa Samar</h1>
+                                    <h1 class="text-4xl font-bold uppercase tracking-wide font-serif">{{ posts[0]?.category_id == 'Berita'? 'Kabar ' : 'Pengumuman ' }} Desa Samar</h1>
                                     <span class="text-xl">Kecamatan Pagerwojo</span>
                                 </div>
                             </div>
                         </div>
                     </el-col>
                     <el-col :span="16" :xs="24" class="px-4 md:px-0" >
-                        <el-input :placeholder="`Cari ${posts[0].category_id == 'Berita' ? 'Berita' : 'Pengumuman'} `" class="mt-4" v-model="filter" clearable>
+                        <el-input :placeholder="`Cari ${posts[0]?.category_id == 'Berita' ? 'Berita' : 'Pengumuman'} `" class="mt-4" v-model="filter" clearable>
                             <template #suffix>
                                 <Icon icon="mdi:magnify" />
                             </template>

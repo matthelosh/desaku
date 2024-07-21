@@ -2,7 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Visitor;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -37,7 +40,11 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'message' => fn () => $request->session()->get('message')
             ],
-
+            'visitor' => [
+                'online' => DB::table('sessions')->count(),
+                'total' => Visitor::all()->count(),
+                'today' => Visitor::whereDate('visited_at', Carbon::now()->format('d'))->get()->count()
+            ]
         ];
     }
 }
