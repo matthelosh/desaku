@@ -37,7 +37,7 @@ class WargaController extends Controller
 
     public function index()
     {
-        $wargas =  Warga::whereDoesntHave('jabatan')->get();
+        $wargas =  Warga::get();
 
         return response()->json(['datas' => ['wargas' => $wargas, 'jabatans' => Jabatan::all()]]);
     }

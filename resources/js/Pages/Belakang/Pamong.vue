@@ -54,6 +54,7 @@ const editPamong = (item) => {
     pamong.value = item
     selectedWarga.value = item.warga
     mode.value = 'form'
+    showDetail.value = true
 }
 
 onBeforeMount(() => {
@@ -81,34 +82,34 @@ onBeforeMount(() => {
                 <el-table-column label="NIK" prop="nik" width="200"></el-table-column>
                 <el-table-column label="Foto" width="120">
                     <template #default="scope">
-                        <el-image :src="scope.row.warga.foto" alt="Foto" style="width: 70px; height: 70px; border-radius: 50%;" fit="cover" :lazy="true" />
+                        <el-image :src="scope.row.warga?.foto" alt="Foto" style="width: 70px; height: 70px; border-radius: 50%;" fit="cover" :lazy="true" />
                     </template>
                 </el-table-column>
                 <el-table-column label="Nama" width="250">
                     <template #default="scope">
                         <el-button plain type="primary" @click="editPamong(scope.row)"> 
-                            {{ scope.row.warga.nama }}
+                            {{ scope.row.warga?.nama }}
                         </el-button>
                     </template>
                 </el-table-column>
                 <el-table-column label="Jenis Kelamin" width="100">
                     <template #default="scope">
-                    {{ scope.row.warga.jk }}
+                    {{ scope.row.warga?.jk }}
                     </template>
                 </el-table-column>
                 <el-table-column label="Tempat, Tgl Lahir" width="250">
                     <template #default="scope">
-                    {{ scope.row.warga.tempat_lahir }}, {{ dayjs(scope.row.warga.tanggal_lahir).format('DD MMM YYYY') }}
+                    {{ scope.row.warga?.tempat_lahir }}, {{ dayjs(scope.row.warga?.tanggal_lahir).format('DD MMM YYYY') }}
                     </template>
                 </el-table-column>
                 <el-table-column label="Jabatan" width="200">
                     <template #default="scope">
-                    {{ scope.row.jabatan.nama }}
+                    {{ scope.row.jabatan?.nama }}
                     </template>
                 </el-table-column>
                 <el-table-column label="Alamat" >
                     <template #default="scope">
-                    {{ scope.row.warga.rt.nama }}/{{ scope.row.warga.rt.rw.nama }} Dusun {{ scope.row.warga.rt.rw.dusun.nama }}
+                    {{ scope.row.warga?.rt.nama }}/{{ scope.row.warga?.rt.rw.nama }} Dusun {{ scope.row.warga?.rt.rw.dusun.nama }}
                     </template>
                 </el-table-column>
                 <el-table-column label="Opsi" fixed="right" width="100" align="center">
@@ -142,22 +143,28 @@ onBeforeMount(() => {
                 </template>
                 <template #default>
                     <el-form v-model="pamong" v-loading="loading">
-                        <el-row>
-                            <el-col>
+                        <el-row :gutter="20">
+                            <el-col :span="8">
                                 <el-form-item label="Pejabat">
                                     <el-select filterable placeholder="Pilih Pejabat" v-model="pamong.nik" @change="onPejabatPicked">
                                         <el-option v-for="(warga, w) in data.wargas" :key="w" :value="warga.nik" :label="warga.nama"></el-option>
                                     </el-select>
                                 </el-form-item>
+                                <el-form-item label="Jabatan">
+                                    <el-select filterable placeholder="Pilih Jabatan" v-model="pamong.jabatan_id">
+                                        <el-option v-for="(jabatan, j) in data.jabatans" :key="j" :value="jabatan.id" :label="jabatan.nama"></el-option>
+                                    </el-select>
+                                </el-form-item>
                             </el-col>
-                            <el-col v-if="showDetail">
-                                <el-card class="mb-4" shadow="never">
+                            
+                            <el-col :span="16">
+                                <el-card class="mb-4" shadow="never" v-if="showDetail">
                                     <h3 class="mb-2 font-bold">Detail Pejabat:</h3>
-                                    <el-row :gutter="20">
-                                        <el-col :span="8">
+                                    <el-row >
+                                        <el-col>
                                             <el-image :src="selectedWarga.foto"></el-image>
                                         </el-col>
-                                        <el-col :span="16">
+                                        <el-col>
                                             <el-descriptions :border="true" :column="2">
                                                 <el-descriptions-item label="Nama">{{ selectedWarga.nama }}</el-descriptions-item>
                                                 <el-descriptions-item label="Jenis Kelamin">{{ selectedWarga.jk }}</el-descriptions-item>
@@ -167,13 +174,6 @@ onBeforeMount(() => {
                                         </el-col>
                                     </el-row>
                                 </el-card>
-                            </el-col>
-                            <el-col>
-                                <el-form-item label="Jabatan">
-                                    <el-select filterable placeholder="Pilih Jabatan" v-model="pamong.jabatan_id">
-                                        <el-option v-for="(jabatan, j) in data.jabatans" :key="j" :value="jabatan.id" :label="jabatan.nama"></el-option>
-                                    </el-select>
-                                </el-form-item>
                             </el-col>
                         </el-row>
                     </el-form>
