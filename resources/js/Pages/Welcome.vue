@@ -31,6 +31,7 @@ const props = defineProps({
 });
 
 const page = usePage()
+const currentUrl = computed(() => window.location.href)
 
 </script>
 
@@ -38,6 +39,24 @@ const page = usePage()
     <Head>
         <title>Sugeng Rawuh</title>
         <meta name="description" content="Website resmi Pemerintah Desa Samar Kecamatan Pagerwojo Kabupaten Tulungagung" />
+        <meta property="og:site_name" content="example.com" />
+        <meta property="og:locale" content="id" />
+        <meta property="og:title" content="Beranda" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" :content="currentUrl" />
+        <meta property="og:image" itemprop="image" content="/img/kantor.jpg" />
+        <meta property="og:image:type" content="image/jpg" />
+        <meta property="og:image:width" content="1920" />
+        <meta property="og:image:height" content="1080" />
+        <meta property="og:description" content="Sugeng Rawuh di Desa Samar Tulungagung" />
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Beranfa">
+        <meta name="twitter:description" content="Nice marketing phrases">
+        <meta property="twitter:image" content="/img/kantor.jpg"/>
+        <meta name="description" content="Desa Samar Tulungagung">
+        <meta name="keywords" content="Beranda, Desa Samar, Tulungagung, Pagerwojo">
+        <link rel="canonical" :href="currentUrl">
+
     </Head>
     <div class="common-layout h-min-screen w-screen bg-slate-100">
         <el-container>
