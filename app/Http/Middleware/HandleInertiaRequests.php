@@ -43,7 +43,7 @@ class HandleInertiaRequests extends Middleware
             'visitor' => [
                 'online' => DB::table('sessions')->count(),
                 'total' => Visitor::all()->count(),
-                'today' => Visitor::whereDate('visited_at', Carbon::now()->format('d'))->get()->count()
+                'today' => Visitor::whereDate('visited_at', '=', date('Y-m-d'))->get()->count()
             ]
         ];
     }

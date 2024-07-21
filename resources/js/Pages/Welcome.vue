@@ -13,6 +13,7 @@ import Agenda from '@/Components/Front/Home/Agenda.vue'
 import CarouselPamong from '@/Components/Front/Home/ListPamong.vue'
 import ListProducts from '@/Components/Front/Home/ListProducts.vue'
 import ListWisata from '@/Components/Front/Home/ListWisata.vue'
+
 const props = defineProps({
     canLogin: {
         type: Boolean,
@@ -38,25 +39,23 @@ const currentUrl = computed(() => window.location.href)
 <template>
     <Head>
         <title>Sugeng Rawuh</title>
-        <meta name="description" content="Website resmi Pemerintah Desa Samar Kecamatan Pagerwojo Kabupaten Tulungagung" />
-        <meta property="og:site_name" content="example.com" />
-        <meta property="og:locale" content="id" />
-        <meta property="og:title" content="Beranda" />
-        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="id_ID" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Desa Samar Kecamatan Pagerwojo Kabupaten Tulungagung" />
+        <meta property="og:description" content="Samar Bisa! Website Desa Samar Kecamatan Pagerwojo Kabupaten Tulungagung" />
         <meta property="og:url" :content="currentUrl" />
-        <meta property="og:image" itemprop="image" content="/img/kantor.jpg" />
+        <meta property="og:site_name" content="Desa Samar Tulungagung" />
+        <meta property="article:tag" content="website desa, desa samar, kabupaten tullungagung, desa.id" />
+        <meta property="article:section" content="Berita" />
+        <meta property="og:updated_time" :content="new Date()" />
+        <meta property="og:image" content="/img/kantor.jpg" />
+        <meta property="og:image:secure_url" content="/img/kantor.jpg" />
+        <meta property="og:image:width" content="1600" />
+        <meta property="og:image:height" content="900" />
+        <meta property="og:image:alt" content="Kantor Desa Samar" />
         <meta property="og:image:type" content="image/jpg" />
-        <meta property="og:image:width" content="1920" />
-        <meta property="og:image:height" content="1080" />
-        <meta property="og:description" content="Sugeng Rawuh di Desa Samar Tulungagung" />
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Beranfa">
-        <meta name="twitter:description" content="Nice marketing phrases">
-        <meta property="twitter:image" content="/img/kantor.jpg"/>
-        <meta name="description" content="Desa Samar Tulungagung">
-        <meta name="keywords" content="Beranda, Desa Samar, Tulungagung, Pagerwojo">
-        <link rel="canonical" :href="currentUrl">
-
+        <meta property="article:published_time" content="2024-02-28T09:40:32+07:00" />
+        <meta property="article:modified_time" content="2024-02-28T09:40:45+07:00" />
     </Head>
     <div class="common-layout h-min-screen w-screen bg-slate-100">
         <el-container>
@@ -91,6 +90,13 @@ const currentUrl = computed(() => window.location.href)
                             <ListPosts />
                         </el-col>
                         <el-col :span="6" :xs="24" class="side px-0 md:px-6">
+                            <!-- Pengunjung -->
+                                 <el-divider class="font-bold text-slate-600">Pengunjung:</el-divider>
+                                 <div class="visitor bg-white p-2 shadow rounded">
+                                    <p>Hari ini: {{ page.props.visitor.today }}</p>
+                                    <p>Semua: {{ page.props.visitor.total }}</p>
+                                    <p>Online: {{ page.props.visitor.online }}</p>
+                                 </div>
                                 <!-- Pengumuman -->
                                 <el-divider content-position="center">
                                     <template #default>
@@ -130,13 +136,7 @@ const currentUrl = computed(() => window.location.href)
                                  <div class="list-info">
                                     <CarouselPamong />
                                  </div>
-                                 <div class="mt-2">&nbsp;</div>
-                                 <el-divider class="font-bold text-slate-600">Pengunjung:</el-divider>
-                                 <div class="visitor bg-white p-2 shadow rounded">
-                                    <p>Hari ini: {{ page.props.visitor.today }}</p>
-                                    <p>Semua: {{ page.props.visitor.total }}</p>
-                                    <p>Online: {{ page.props.visitor.online }}</p>
-                                 </div>
+                                 
                         </el-col>
                     </el-row>
                 </el-container>
