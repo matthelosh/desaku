@@ -14,6 +14,6 @@ const page = usePage()
             <p>Hari ini: {{ page.props.visitor.today }}</p>
             <p>Semua: {{ page.props.visitor.total }}</p>
             <p>Online: {{ page.props.visitor.online }}</p>
-            </div>
+        </div>
     </div>
 </template>
