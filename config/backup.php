@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 return [
 
     'backup' => [
@@ -7,7 +9,8 @@ return [
          * The name of this application. You can use this name to monitor
          * the backups.
          */
-        'name' => env('APP_NAME', 'laravel-backup'),
+        // 'name' => env('APP_NAME', 'laravel-backup'),
+        'name' => 'backup-' . Carbon::now()->format('dmY_His'),
 
         'source' => [
             'files' => [
@@ -31,7 +34,7 @@ return [
                 /*
                  * Determines if symlinks should be followed.
                  */
-                'follow_links' => false,
+                'follow_links' => true,
 
                 /*
                  * Determines if it should avoid unreadable folders.
@@ -211,11 +214,11 @@ return [
         'notifiable' => \Spatie\Backup\Notifications\Notifiable::class,
 
         'mail' => [
-            'to' => 'your@example.com',
+            'to' => 'matthelosh@gmail.com',
 
             'from' => [
-                'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-                'name' => env('MAIL_FROM_NAME', 'Example'),
+                'address' => env('MAIL_FROM_ADDRESS', 'lina.safitri.samar@desa.mail.go.id'),
+                'name' => env('MAIL_FROM_NAME', 'Ops Desa Samar'),
             ],
         ],
 

@@ -25,7 +25,7 @@ const data = computed(() => page.props.data)
                                 <Icon icon="mdi:chart-box"  class="absolute right-0 text-white text-2xl hover:cursor-pointer hover:text-4xl transition-all duration-100 ease-in-out"/>
                             </div>
                             <h1 class="text-8xl text-center text-white relative">{{ data.posts.length }} <small class="text-2xl right-6 -ml-6">Kabar</small></h1>
-                            <Icon icon="mdi:newspaper" class="text-8xl text-white opacity-60 group-hover:-translate-y-10 transition-all duration-300 ease-in-out group-hover:opacity-90 mix-blend-overlay" />
+                            <Icon icon="mdi:newspaper" class="text-8xl text-white opacity-60 group-hover:-translate-y-10 transition-all duration-300 ease-in-out group-hover:opacity-90 mix-blend-overlay group-hover:-rotate-6" />
                         </template>
                     </el-card>
                 </el-col>
@@ -39,7 +39,7 @@ const data = computed(() => page.props.data)
                                 <Icon icon="mdi:chart-box"  class="absolute right-0 text-white text-2xl hover:cursor-pointer hover:text-4xl transition-all duration-100 ease-in-out"/>
                             </div>
                             <h1 class="text-8xl text-center text-white relative">{{ data.infos.length }} <small class="text-2xl right-6 -ml-6">Info</small></h1>
-                            <Icon icon="mdi:bullhorn-variant" class="text-8xl text-white opacity-60 group-hover:-translate-y-10 transition-all duration-300 ease-in-out group-hover:opacity-90 mix-blend-overlay" />
+                            <Icon icon="mdi:bullhorn-variant" class="text-8xl text-white opacity-60 group-hover:-translate-y-10 transition-all duration-300 ease-in-out group-hover:opacity-90 mix-blend-overlay group-hover:-rotate-6" />
                         </template>
                     </el-card>
                 </el-col>
@@ -53,7 +53,7 @@ const data = computed(() => page.props.data)
                                 <Icon icon="mdi:chart-box"  class="absolute right-0 text-white text-2xl hover:cursor-pointer hover:text-4xl transition-all duration-100 ease-in-out"/>
                             </div>
                             <h1 class="text-8xl text-center text-white relative">{{ data.wargas.length }} <small class="text-2xl right-6 -ml-6">Jiwa</small></h1>
-                            <Icon icon="mdi:human-greeting" class="text-8xl text-white opacity-60 group-hover:-translate-y-10 transition-all duration-300 ease-in-out group-hover:opacity-90 mix-blend-overlay" />
+                            <Icon icon="mdi:human-greeting" class="text-8xl text-white opacity-60 group-hover:-translate-y-10 transition-all duration-300 ease-in-out group-hover:opacity-90 mix-blend-overlay group-hover:-rotate-6" />
                         </template>
                     </el-card>
                 </el-col>
@@ -67,7 +67,7 @@ const data = computed(() => page.props.data)
                                 <Icon icon="mdi:chart-box"  class="absolute right-0 text-white text-2xl hover:cursor-pointer hover:text-4xl transition-all duration-100 ease-in-out"/>
                             </div>
                             <h1 class="text-8xl text-center text-white relative">{{ data.wisatas.length }} <small class="text-2xl right-6 -ml-6">Tujuan</small></h1>
-                            <Icon icon="mdi:beach" class="text-8xl text-white opacity-60 group-hover:-translate-y-10 transition-all duration-300 ease-in-out group-hover:opacity-90 mix-blend-overlay" />
+                            <Icon icon="mdi:beach" class="text-8xl text-white opacity-60 group-hover:-translate-y-10 transition-all duration-300 ease-in-out group-hover:opacity-90 mix-blend-overlay group-hover:-rotate-6" />
                         </template>
                     </el-card>
                 </el-col>
@@ -81,7 +81,7 @@ const data = computed(() => page.props.data)
                                 <Icon icon="mdi:chart-box"  class="absolute right-0 text-white text-2xl hover:cursor-pointer hover:text-4xl transition-all duration-100 ease-in-out"/>
                             </div>
                             <h1 class="text-8xl text-center text-white relative">{{ data.businesses.length }} <small class="text-2xl right-6 -ml-6">Perusahaan</small></h1>
-                            <Icon icon="mdi:store" class="text-8xl text-white opacity-60 group-hover:-translate-y-10 transition-all duration-300 ease-in-out group-hover:opacity-90 mix-blend-overlay" />
+                            <Icon icon="mdi:store" class="text-8xl text-white opacity-60 group-hover:-translate-y-10 transition-all duration-300 ease-in-out group-hover:opacity-90 mix-blend-overlay group-hover:-rotate-6" />
                         </template>
                     </el-card>
                 </el-col>
@@ -95,7 +95,7 @@ const data = computed(() => page.props.data)
                                 <Icon icon="mdi:chart-box"  class="absolute right-0 text-white text-2xl hover:cursor-pointer hover:text-4xl transition-all duration-100 ease-in-out"/>
                             </div>
                             <h1 class="text-8xl text-center text-white relative">{{ data.produks.length }} <small class="text-2xl right-6 -ml-6">Produk</small></h1>
-                            <Icon icon="mdi:sale" class="text-8xl text-white opacity-60 group-hover:-translate-y-10 transition-all duration-300 ease-in-out group-hover:opacity-90 mix-blend-overlay" />
+                            <Icon icon="mdi:sale" class="text-8xl text-white opacity-60 group-hover:-translate-y-10 transition-all duration-300 ease-in-out group-hover:opacity-90 mix-blend-overlay group-hover:-rotate-6" />
                         </template>
                     </el-card>
                 </el-col>
