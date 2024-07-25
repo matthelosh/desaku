@@ -24,6 +24,18 @@ const rute = computed(() => route().current())
                         {{ menu.label }}
                     </Link>
                 </li>
+                <el-divider>
+                    <div class="flex items-center gap-2">
+                        <Icon icon="mdi:tools" /> 
+                        SETTING
+                    </div>
+                </el-divider>
+                <li>
+                    <Link :href="route('dashboard.setting')" :class="{'active' : rute === 'dashboard.setting'}" class="flex gap-1 items-center py-4 px-2 hover:text-sky-800 transition-all duration-200 ease-in-out hover:bg-sky-100 text-sky-800">
+                        <Icon icon="mdi:cog" />
+                        Pengaturan
+                    </Link>
+                </li>
             </ol>
 
         </div>

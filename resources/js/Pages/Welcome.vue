@@ -7,6 +7,7 @@ import { onHeaderStuck } from '@/helpers/front'
 import Header from '@/Components/Front/Header.vue'
 import Hero from '@/Components/Front/Home/Hero.vue'
 import Kontak from '@/Components/Front/Kontak.vue'
+import Visitor from '@/Components/Front/Visitor.vue'
 import ListPosts from '@/Components/Front/Home/ListPosts.vue'
 import ListInfos from '@/Components/Front/Home/ListInfos.vue'
 import Agenda from '@/Components/Front/Home/Agenda.vue'
@@ -91,11 +92,7 @@ const currentUrl = computed(() => window.location.href)
                         <el-col :span="6" :xs="24" class="side px-0 md:px-6">
                             <!-- Pengunjung -->
                                  <el-divider class="font-bold text-slate-600">Pengunjung:</el-divider>
-                                 <div class="visitor bg-white p-2 shadow rounded">
-                                    <p>Hari ini: {{ page.props.visitor.today }}</p>
-                                    <p>Semua: {{ page.props.visitor.total }}</p>
-                                    <p>Online: {{ page.props.visitor.online }}</p>
-                                 </div>
+                                 <Visitor />
                                 <!-- Pengumuman -->
                                 <el-divider content-position="center">
                                     <template #default>

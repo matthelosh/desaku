@@ -50,7 +50,7 @@ const posts = computed(() => page.props.posts)
                         </el-row>
                         <el-row  class="w-full">
                             <el-col>
-                                <div class="grid grid-cols-3 gap-4">
+                                <div class="grid md:grid-cols-3 gap-4 px-4 md:px-0">
                                     <div v-for="(post, p) in posts" :key="p"  class="card bg-white col-span-1 rounded-md overflow-hidden shadow">
                                         <div class="card-header p-4">
                                             <h3 class="font-bold text-2xl">

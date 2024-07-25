@@ -116,6 +116,10 @@ Route::middleware('auth')->group(function () {
         Route::prefix('wisata')->group(function () {
             Route::get("/", [ProdukController::class, 'home'])->name('dashboard.wisata');
         });
+
+        Route::prefix('setting')->group(function () {
+            Route::get("/", [SettingController::class, 'home'])->name('dashboard.setting');
+        });
     })->middleware(['auth', 'verified']);
 });
 

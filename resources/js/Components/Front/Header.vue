@@ -51,7 +51,21 @@ const items = computed(() => menus)
             </el-button>
         </template>
         <div class="content">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio obcaecati maiores vero aut, accusamus possimus quae error iusto similique unde ab odit suscipit maxime facere dolorem perspiciatis quibusdam minus aperiam.</p>
+            <template v-for="(menu, m) in items" :key="m">
+                <ol>
+                    <li v-if="menu.children?.length > 0">
+                        <Link href="#" class="px-4 text-sky-900 py-2 text-sm font-semibold rounded hover:shadow-outline">{{ menu.label }}</Link>
+                        <ol class="pl-6">
+                            <li v-for="(child, c) in menu.children" :key="c">
+                                <Link :href="route(child.url)" class="px-4 text-sky-900 py-2 text-sm font-semibold rounded hover:shadow-outline">{{ child.label }}</Link>
+                            </li>
+                        </ol>
+                    </li>
+                    <li v-if="menu.children?.length < 1" >
+                        <Link :href="route(menu.url)" class="px-4 text-sky-900 py-2 text-sm font-semibold rounded hover:shadow-outline">{{ menu.label }}</Link>
+                    </li>
+                </ol>
+            </template>
         </div>
     </el-drawer>
 </template>
