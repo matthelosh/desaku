@@ -96,6 +96,7 @@ const data = computed(() => page.props.data)
                             </div>
                             <h1 class="text-8xl text-center text-white relative">{{ data.produks.length }} <small class="text-2xl right-6 -ml-6">Produk</small></h1>
                             <Icon icon="mdi:sale" class="text-8xl text-white opacity-60 group-hover:-translate-y-10 transition-all duration-300 ease-in-out group-hover:opacity-90 mix-blend-overlay group-hover:-rotate-6" />
+                            
                         </template>
                     </el-card>
                 </el-col>
