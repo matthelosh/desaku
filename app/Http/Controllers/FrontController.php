@@ -23,6 +23,7 @@ class FrontController extends Controller
     ) {
         try {
             return Inertia::render('Welcome', [
+
                 'canLogin' => Route::has('login'),
                 'canRegister' => Route::has('register'),
                 'products' => $produkService->home($request),
@@ -32,6 +33,12 @@ class FrontController extends Controller
                 'pamongs' => $pamongService->home($request),
                 'laravelVersion' => Application::VERSION,
                 'phpVersion' => PHP_VERSION,
+            ])->withViewData([
+                'meta' => [
+                    'title' => 'Pemerintah Desa Samar Tulungagung',
+                    'description' => 'Website Resmi Pemerintah Desa Samar Tulungagung',
+                    'image' => asset('img/kantor.jpg'),
+                ]
             ]);
         } catch (\Throwable $th) {
             throw $th;

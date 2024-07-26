@@ -40,21 +40,6 @@ const currentUrl = computed(() => window.location.href)
 <template>
     <Head>
         <title>Sugeng Rawuh</title>
-        <meta property="og:locale" content="id_ID" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Desa Samar Kecamatan Pagerwojo Kabupaten Tulungagung" />
-        <meta property="og:description" content="Samar Bisa! Website Desa Samar Kecamatan Pagerwojo Kabupaten Tulungagung" />
-        <meta property="og:url" :content="currentUrl" />
-        <meta property="og:site_name" content="Desa Samar Tulungagung" />
-        <meta property="article:tag" content="website desa, desa samar, kabupaten tullungagung, desa.id" />
-        <meta property="article:section" content="Berita" />
-        <meta property="og:updated_time" :content="new Date()" />
-        <meta property="og:image" itemprop="image" :content="`${currentUrl}img/kantor.jpg`" />
-        <meta property="og:image:secure_url" :content="`${currentUrl}img/kantor.jpg`" />
-        <meta property="og:image:width" content="1366" />
-        <meta property="og:image:height" content="768" />
-        <meta property="og:image:alt" content="Kantor Desa Samar" />
-        <meta property="og:image:type" content="image/jpg" />
     </Head>
     <div class="common-layout h-min-screen w-screen bg-slate-100">
         <el-container>
