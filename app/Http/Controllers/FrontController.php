@@ -61,6 +61,13 @@ class FrontController extends Controller
         try {
             return Inertia::render('Depan/Profil/Read', [
                 'post' => Post::whereType('page')->whereCategoryId($category_id)->first(),
+            ])->withViewData([
+                'meta' => [
+                    'title' => "Profil Desa Samar",
+                    'description' => 'Profil Desa Samar',
+                    'image' => \asset('img/balai.jpg'),
+                    'url' => $request->url(),
+                ]
             ]);
         } catch (\Throwable $th) {
             throw $th;
@@ -72,6 +79,13 @@ class FrontController extends Controller
         try {
             return Inertia::render('Depan/Berita', [
                 'posts' => Post::whereCategoryId('Berita')->get()
+            ])->withViewData([
+                'meta' => [
+                    'title' => "Kabar Desa Samar",
+                    'description' => 'Daftar Kabar Desa Samar',
+                    'image' => \asset('img/balai.jpg'),
+                    'url' => $request->url(),
+                ]
             ]);
         } catch (\Throwable $th) {
             throw $th;
@@ -92,7 +106,14 @@ class FrontController extends Controller
         try {
             return Inertia::render('Depan/Berita', [
                 'posts' => Post::where('category_id', 'Info')->get()
-            ]);
+            ])->withViewData([
+                'meta' => [
+                    'title' => "Pengumuman Desa Samar",
+                    'description' => 'Daftar Pengumuman Desa Samar',
+                    'image' => \asset('img/balai.jpg'),
+                    'url' => $request->url(),
+                ]
+            ]);;
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -113,6 +134,13 @@ class FrontController extends Controller
             return Inertia::render('Depan/ReadPost', [
                 'post' => $post,
                 'others' => $others,
+            ])->withViewData([
+                'meta' => [
+                    'title' => $post->title,
+                    'description' => \substr($post->content, 0, 200),
+                    'image' => $post->cover,
+                    'url' => $request->url(),
+                ]
             ]);
         } catch (\Throwable $th) {
             throw $th;

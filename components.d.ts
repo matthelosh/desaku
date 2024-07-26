@@ -9,6 +9,8 @@ declare module 'vue' {
   export interface GlobalComponents {
     ElAffix: typeof import('element-plus/es')['ElAffix']
     ElBacktop: typeof import('element-plus/es')['ElBacktop']
+    ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
+    ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
@@ -18,6 +20,7 @@ declare module 'vue' {
     ElDrawer: typeof import('element-plus/es')['ElDrawer']
     ElFooter: typeof import('element-plus/es')['ElFooter']
     ElHeader: typeof import('element-plus/es')['ElHeader']
+    ElImage: typeof import('element-plus/es')['ElImage']
     ElMain: typeof import('element-plus/es')['ElMain']
     ElPopover: typeof import('element-plus/es')['ElPopover']
     ElRow: typeof import('element-plus/es')['ElRow']

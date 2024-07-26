@@ -9,10 +9,10 @@
     <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="description" content="{{$meta['description'] ?? 'Website Resmi Desa Samar' }}">
     <!-- Opengraph meta -->
-    <meta property="og:url" content="https://samar.desa.id">
+    <meta property="og:url" content="{{ $meta['url'] ?? 'https://samar.desa.id' }}">
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ $meta['title'] ?? 'Default Title' }}">
-    <meta property="og:description" content="{{ $meta['description'] ?? 'Default Description' }}">
+    <meta property="og:description" content="{{ $meta['description'] ?? 'Website resmi desa samar' }}">
     <meta property="og:image" content="{{ $meta['image'] ?? asset('logo.png') }}">
 
     <!-- Twitter Meta Tags -->
