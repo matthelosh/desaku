@@ -79,6 +79,36 @@ class WargaController extends Controller
             throw $th;
         }
     }
+    public function impor(Request $request)
+    {
+        try {
+            // dd($request->all());
+            $datas = $request->datas;
+            foreach ($datas as $data) {
+                Warga::updateOrCreate(
+                    [
+                        'nik' => $data['nik'],
+                    ],
+                    [
+                        'kk_id' => $data['kk_id'],
+                        'nama' => $data['nama'],
+                        'jk' => $data['jk'],
+                        'tempat_lahir' => $data['tempat_lahir'],
+                        'tanggal_lahir' => $data['tanggal_lahir'],
+                        'agama' => $data['agama'],
+                        'rt_id' => $data['rt_id'],
+                        'pendidikan' => $data['pendidikan'],
+                        'pekerjaan' => $data['pekerjaan'],
+                        'ayah' => $data['ayah'] ?? null,
+                        'ibu' => $data['ibu'] ?? null,
+                    ]
+                );
+            }
+            return back()->with('message', 'Data Warga Diimpor');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 
     public function destroy(Warga $warga, $id)
     {

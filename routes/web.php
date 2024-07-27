@@ -87,6 +87,7 @@ Route::middleware('auth')->group(function () {
             Route::get("/", [WargaController::class, 'home'])->name('dashboard.warga');
             Route::post("/", [WargaController::class, 'index'])->name('dashboard.warga.index');
             Route::post("/store", [WargaController::class, 'store'])->name('dashboard.warga.store');
+            Route::post("/impor", [WargaController::class, 'impor'])->name('dashboard.warga.impor');
             Route::get('/alamat', [WargaController::class, 'alamat'])->name('dashboard.warga.alamat');
             Route::delete("/{id}", [WargaController::class, 'destroy'])->name('dashboard.warga.destroy');
         });

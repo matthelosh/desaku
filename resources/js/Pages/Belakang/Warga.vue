@@ -5,6 +5,7 @@ import { Icon } from '@iconify/vue'
 import DashLayout from '@/Layouts/DashLayout.vue'
 import { lebar } from '@/helpers/layout.js'
 const FormWarga = defineAsyncComponent(() => import('@/Components/Back/Warga/FormWarga.vue'))
+const ImporWarga = defineAsyncComponent(() => import('@/Components/Back/Warga/ImportWarga.vue'))
 const mode = ref('list')
 const selectedWarga = ref(null)
 const page = usePage()
@@ -43,6 +44,13 @@ const closeForm = () => {
     selectedWarga.value = null
     mode.value = 'list'
 }
+const impor = () => {
+    mode.value = 'impor'
+}
+const imporWarga = ref(false)
+const closeImpor = () => {
+    mode.value = 'list'
+}
 
 </script>
 
@@ -60,17 +68,18 @@ const closeForm = () => {
                                     <h3>Data Warga</h3>
 
                                     <div class="toolbar-items flex items-center gap-2">
-                                        <el-input placeholder="Cari Warga" v-model="search">
+                                        <el-input placeholder="Cari Warga" v-model="search" clearable>
                                             <template #suffix>
                                                 <Icon icon="mdi:magnify" />
                                             </template>
                                         </el-input>
                                         <el-button type="primary" @click="tambah">Tambah Baru</el-button>
+                                        <el-button type="success" @click="impor">Impor</el-button>
                                     </div>
                                 </div>
                             </template>
                             <template #default>
-                                <el-table :data="datas.slice(0,20)" height="80vh" v-loading="progressIndicator" element-loading-text="`Tunggu sebentar`">
+                                <el-table :data="datas" max-height="75vh" v-loading="progressIndicator" element-loading-text="`Tunggu sebentar`">
                                     <el-table-column label="#" type="index" width="80"></el-table-column>
                                     <el-table-column label="NIK" prop="nik" width="150"></el-table-column>
                                     <el-table-column label="Nama" prop="nama" sortable></el-table-column>
@@ -78,7 +87,7 @@ const closeForm = () => {
                                     <el-table-column label="RT" prop="rt.nama" sortable width="80"></el-table-column>
                                     <el-table-column label="RW" prop="rw.nama" sortable width="80"></el-table-column>
                                     <el-table-column label="Dusun" prop="dusun.nama" width="150"></el-table-column>
-                                    <el-table-column label="OPsi" fixed="right" width="150">
+                                    <el-table-column label="Opsi" fixed="right" width="150">
                                         <template #default="scope">
                                             <div class="flex items-center gap-1">
                                                 <el-button circle type="warning" size="small" @click="edit(scope.row)">
@@ -96,10 +105,18 @@ const closeForm = () => {
                                     </el-table-column>
                                 </el-table>
                             </template>
+                            <template #footer>
+                                <div class="flex items-center p-2">
+                                    <p>Jumlah Warga: {{ datas.length }}</p>
+                                </div>
+                            </template>
                         </el-card>
                     </Transition>
                         <Transition name="warga">
                             <FormWarga v-if="mode == 'tambah'" :selectedWarga="selectedWarga" @close="closeForm" />
+                        </Transition>
+                        <Transition name="warga">
+                            <ImporWarga v-if="mode == 'impor'"  @close="closeImpor" :show="mode == 'impor'" />
                         </Transition>
                 </el-col>
             </el-row>
