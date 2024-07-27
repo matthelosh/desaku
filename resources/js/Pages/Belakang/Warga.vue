@@ -56,7 +56,6 @@ const closeImpor = () => {
 
 <template>
     <Head title="Data Warga" />
-    <!-- <ProgressIndicator ref="progressIndicator"  /> -->
     <DashLayout>
         <el-container>
             <el-row :gutter="lebar() == 'xs' ? 0 : 20" class="w-full">

@@ -53,7 +53,6 @@ const kirim = async() => {
         onSuccess: page => {
             ElNotification({title: 'Info', message: page.props.flash.message, type: 'success'})
             router.reload({only: ['wargas']})
-            
             closeMe()
         },
         onError: errs => {
