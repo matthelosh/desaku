@@ -11,21 +11,21 @@
         "children": [
             {
                 "label": "Sejarah",
-                "url": "front.profil",
+                "url": "front.profil.page",
                 "params": {
                     "category_id": "sejarah"
                 }
             },
             {
                 "label": "Visi Misi",
-                "url": "front.profil",
+                "url": "front.profil.page",
                 "params": {
                     "category_id": "visi"
                 }
             },
             {
                 "label": "Struktur Organisasi",
-                "url": "front.profil",
+                "url": "front.profil.page",
                 "params": {
                     "category_id": "organisasi"
                 }
@@ -43,14 +43,14 @@
             },
             {
                 "label": "Kegiatan",
-                "url": "post",
+                "url": "post.category",
                 "params": {
                     "category_id": "kegiatan"
                 }
             },
             {
                 "label": "Musyawarah",
-                "url": "post",
+                "url": "post.category",
                 "params": {
                     "category_id": "musyawarah"
                 }
@@ -60,11 +60,13 @@
     {
         "label": "Produk Unggulan",
         "url": "front.produk",
-        "params": {}
+        "params": {},
+        "children": []
     },
     {
         "label": "Potensi Wisata",
         "url": "front.wisata",
-        "params": {}
+        "params": {},
+        "children": []
     }
 ]

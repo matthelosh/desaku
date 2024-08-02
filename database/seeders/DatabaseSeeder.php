@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             LembagaSeeder::class,
             BusinessSeeder::class,
             ProductSeeder::class,
+            WisataSeeder::class,
         ]);
     }
 }
