@@ -197,7 +197,7 @@ Route::middleware('auth')->group(
                 );
                 Route::prefix('produk')->group(
                     function () {
-                        Route::get("/", [ProdukController::class, 'home'])
+                        Route::get("/", [ProdukController::class, 'dashboard'])
                             ->name('dashboard.produk');
                         Route::post("/store", [ProdukController::class, 'store'])
                             ->name('dashboard.produk.store');
@@ -207,8 +207,16 @@ Route::middleware('auth')->group(
                 );
                 Route::prefix('wisata')->group(
                     function () {
-                        Route::get("/", [ProdukController::class, 'home'])
+                        Route::get("/", [WisataController::class, 'dashboard'])
                             ->name('dashboard.wisata');
+                        Route::post(
+                            "/store",
+                            [
+                                WisataController::class,
+                                'store'
+                            ]
+                        )->name('dashboard.wisata.store');
+                        Route::delete("/{id}", [WisataController::class, 'destroy'])->name('dashboard.wisata.destroy');
                     }
                 );
 

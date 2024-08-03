@@ -12,6 +12,21 @@ class ProdukController extends Controller
     public function home(Request $request)
     {
         try {
+            return
+                Inertia::render(
+                    'Depan/Produk/Index',
+                    [
+                        'products' => Produk::all()
+                    ]
+                );
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    public function dashboard(Request $request)
+    {
+        try {
             return Inertia::render('Belakang/Produk', [
                 'businesses' => Business::all(),
                 'products' => Produk::with('produsen')->get(),
