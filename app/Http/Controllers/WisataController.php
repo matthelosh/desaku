@@ -9,6 +9,17 @@ use Illuminate\Support\Facades\Storage;
 
 class WisataController extends Controller
 {
+    public function home(Request $request)
+    {
+        return
+            Inertia::render(
+                "Depan/Wisata/Index",
+                [
+                    "wisatas" => Wisata::all()
+                ]
+            );
+    }
+
     public function dashboard(Request $request)
     {
         return Inertia::render(
@@ -17,6 +28,13 @@ class WisataController extends Controller
                 'wisatas' => Wisata::all()
             ]
         );
+    }
+
+    public function detail(Request $request, $id)
+    {
+        $wisata = Wisata::findOrFail($id);
+
+        return $wisata;
     }
 
     public function store(Request $request)

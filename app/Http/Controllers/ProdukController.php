@@ -36,6 +36,11 @@ class ProdukController extends Controller
         }
     }
 
+    public function detail(Request $request, $id)
+    {
+        return Produk::findOrFail($id);
+    }
+
     public function store(Request $request)
     {
         try {

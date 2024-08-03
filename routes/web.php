@@ -61,12 +61,17 @@ Route::prefix('')->middleware(VisitorTracker::class)->group(
             function () {
                 Route::get('/', [ProdukController::class, 'home'])
                     ->name('front.produk');
+                Route::get('/detail/{id}', [ProdukController::class, 'detail'])
+                    ->name('front.produk.detail');
+
             }
         );
         Route::prefix("wisata")->group(
             function () {
-                Route::get('/', [ProdukController::class, 'home'])
+                Route::get('/', [WisataController::class, 'home'])
                     ->name('front.wisata');
+                Route::get('/detail/{id}', [WisataController::class, 'detail'])
+                    ->name('front.wisata.detail');
             }
         );
     }

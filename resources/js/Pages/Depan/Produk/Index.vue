@@ -123,7 +123,13 @@ const products = computed(() => {
                                     />
                                 </div>
                                 <div class="content p-2 bg-white shadow">
-                                    <Link :href="`product.url`">
+                                    <Link
+                                        :href="
+                                            route('front.produk.detail', {
+                                                id: product.id,
+                                            })
+                                        "
+                                    >
                                         <h3
                                             class="text-md md:text-xl leading-4 font-bold uppercase text-sky-700"
                                         >
