@@ -14,14 +14,24 @@ class JabatanSeeder extends Seeder
     public function run(): void
     {
         $jabatans = [
-            'Kepala Desa', 'Sekretaris', 'Kaur Keuangan', 'Kaur Perencanaan', 'Kaur Tu dan Umum', 'Kasi Kesejahteraan', 'Kasi Pelayanan', 'Kasi Pemerintahan'
+            'Kepala Desa',
+            'Sekretaris',
+            'Kaur Keuangan',
+            'Kaur Perencanaan',
+            'Kaur Tu dan Umum',
+            'Kasi Kesejahteraan',
+            'Kasi Pelayanan',
+            'Kasi Pemerintahan',
+            'Operator'
         ];
 
         foreach ($jabatans as $jabatan) {
-            Jabatan::create([
-                'nama' => $jabatan,
-                'deskripsi' => 'Jataban ' . $jabatan
-            ]);
+            Jabatan::create(
+                [
+                    'nama' => $jabatan,
+                    'deskripsi' => 'Jabatan ' . $jabatan
+                ]
+            );
         }
     }
 }

@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
 class Warga extends Model
 {
     use HasFactory;
@@ -46,11 +45,17 @@ class Warga extends Model
 
     public function lembaga()
     {
-        return $this->belongsToMany(Lembaga::class, 'anggotas')->withPivot('jabatan');
+        return $this->belongsToMany(Lembaga::class, 'anggotas')
+            ->withPivot('jabatan');
     }
 
     public function jabatan()
     {
         return $this->hasOne(Pamong::class, 'nik', 'nik');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'warga_id', 'id');
     }
 }
