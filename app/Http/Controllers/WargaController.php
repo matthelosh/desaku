@@ -18,14 +18,30 @@ class WargaController extends Controller
         try {
             // dd($request->query('lembagaId'));
             if (!$request->query('lembagaId')) {
-                return Inertia::render('Belakang/Warga', [
-                    'wargas' => Warga::with('rt', 'rw', 'dusun', 'jabatan')->get()
-                ]);
+                if ($request->query('q')) {
+                    $wargas = Warga::where('nama', 'LIKE', '%'.$request->query('q').'%')
+                        ->with('rt', 'rw', 'dusun', 'jabatan')
+                        ->paginate(20);
+
+                } else {
+                    $wargas = Warga::with('rt', 'rw', 'dusun', 'jabatan')
+                        ->paginate(20);
+
+                }
+                return Inertia::render(
+                    'Belakang/Warga',
+                    [
+                        'wargas' => $wargas,
+                    ]
+                );
             } else {
                 $lembagaId = $request->query('lembagaId');
-                $wargas = Warga::whereDoesntHave('lembaga', function ($q) use ($lembagaId) {
-                    $q->where('lembagas.id', $lembagaId);
-                })->with('rt.rw.dusun')->get();
+                $wargas = Warga::whereDoesntHave(
+                    'lembaga',
+                    function ($q) use ($lembagaId) {
+                        $q->where('lembagas.id', $lembagaId);
+                    }
+                )->with('rt.rw.dusun')->get();
 
                 return response()->json(['wargas' => $wargas]);
             }
@@ -39,7 +55,14 @@ class WargaController extends Controller
     {
         $wargas =  Warga::get();
 
-        return response()->json(['datas' => ['wargas' => $wargas, 'jabatans' => Jabatan::all()]]);
+        return response()->json(
+            [
+                'datas' => [
+                    'wargas' => $wargas,
+                    'jabatans' => Jabatan::all()
+                ]
+            ]
+        );
     }
 
     public function store(Request $request)
@@ -123,9 +146,11 @@ class WargaController extends Controller
     public function alamat()
     {
         try {
-            return response()->json([
-                'rts' => Rt::with('rw', 'dusun')->get()
-            ]);
+            return response()->json(
+                [
+                    'rts' => Rt::with('rw', 'dusun')->get()
+                ]
+            );
         } catch (\Throwable $th) {
             throw $th;
         }

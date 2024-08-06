@@ -11,8 +11,15 @@ const page = usePage();
 <template>
     <Head title="Pengaturan" />
     <DashLayout>
-        <div class="grid md:grid-cols-3 gap-3">
-            <div class="col-span-3">
+        <div class="grid md:grid-cols-3 grid-cols-1 gap-3">
+            <div class="col-span-1 md:col-span-3">
+                <el-card>
+                    <template #header>
+                        <h3 class="text-lg">Data Pengguna</h3>
+                    </template>
+                </el-card>
+            </div>
+            <div class="col-span-2 md:col-span-3">
                 <el-card>
                     <template #header>
                         <h3 class="text-lg">Data Pengunjung</h3>

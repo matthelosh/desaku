@@ -33,6 +33,12 @@ class RoleSeeder extends Seeder
                 case "carik":
                     $role->syncPermissions(['read_user', 'read_lembaga', 'read_warga', 'read_produk', 'read_business', 'read_wisata']);
                     break;
+                case "rt":
+                    $role->syncPermissions(['read_user', 'update_user', 'create_warga', 'read_warga', 'update_warga', 'delete_warga']);
+                    break;
+                case "warga":
+                    $role->syncPermissions(['read_user', 'update_user', 'read_warga']);
+                    break;
 
             }
         }
