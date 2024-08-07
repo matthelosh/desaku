@@ -26,15 +26,18 @@ class PostController extends Controller
     public function index(Request $request)
     {
         try {
-            $posts = Post::whereType('post')->with('author')->orderBy('updated_at', 'DESC')->get();
+            $posts = Post::whereType('post')->with('author')
+                ->orderBy('updated_at', 'DESC')
+                ->paginate(15);
 
-            return Inertia::render('Belakang/Post', [
-                'data' => [
+            return Inertia::render(
+                'Belakang/Post',
+                [
                     'posts' => $posts,
-                ],
-            ]);
+                ]
+            );
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
         }
     }
 
@@ -45,8 +48,16 @@ class PostController extends Controller
             $name = Str::ulid(\now());
             $ext = $file->getClientOriginalExtension();
 
-            $store = Storage::putFileAs('public/post/img/', $file, $name . '.' . $ext);
-            return response()->json(['url' => Storage::url($store)]);
+            $store = Storage::putFileAs(
+                'public/post/img/',
+                $file,
+                $name . '.' . $ext
+            );
+            return response()->json(
+                [
+                    'url' => Storage::url($store)
+                ]
+            );
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -55,7 +66,11 @@ class PostController extends Controller
     public function kategori(Request $request)
     {
         try {
-            return response()->json(['categories' => Category::all()]);
+            return response()->json(
+                [
+                    'categories' => Category::all()
+                ]
+            );
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -72,7 +87,11 @@ class PostController extends Controller
                 $name = Str::ulid(\now());
                 $ext = $file->getClientOriginalExtension();
 
-                $store = Storage::putFileAs('public/post/img/', $file, $name . '.' . $ext);
+                $store = Storage::putFileAs(
+                    'public/post/img/',
+                    $file,
+                    $name . '.' . $ext
+                );
 
                 $cover = Storage::url($store);
             }

@@ -32,7 +32,7 @@ const rute = computed(() => route().current());
                     <Link
                         :href="route(menu.url)"
                         :class="{ active: rute === menu.url }"
-                        class="flex gap-1 items-center py-4 px-2 hover:text-sky-800 transition-all duration-200 ease-in-out hover:bg-sky-100 text-sky-800"
+                        class="flex gap-1 items-center py-4 px-2 hover:text-sky-800 transition-all duration-200 ease-in-out hover:bg-sky-100 text-slate-900"
                     >
                         <Icon :icon="`mdi:${menu.icon}`" />
                         {{ menu.label }}
@@ -67,4 +67,3 @@ const rute = computed(() => route().current());
     font-weight: 900;
 }
 </style>
-

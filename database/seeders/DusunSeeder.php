@@ -14,14 +14,15 @@ class DusunSeeder extends Seeder
      */
     public function run(): void
     {
-        $dusuns = ['Krajan', 'Garon', 'Gading', 'Tumpaknongko', 'Sendang Bedog'];
-        $wargas = Warga::get()->map(fn ($warga) => $warga->id);
+        $dusuns = ['Krajan', 'Garon', 'Gading', 'Tumpak Nongko', 'Sendang Bedog'];
         foreach ($dusuns as $dusun) {
-            Dusun::create([
-                'nama' => $dusun,
-                'ketua_id' => fake()->randomElement($wargas),
-                'deskripsi' => 'Dusun ' . $dusun
-            ]);
+            Dusun::create(
+                [
+                    'nama' => $dusun,
+                    'ketua_id' => null,
+                    'deskripsi' => 'Dusun ' . $dusun
+                ]
+            );
         }
     }
 }
