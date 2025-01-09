@@ -21,17 +21,17 @@ const onFilePicked = async (e) => {
     const ab = await file.arrayBuffer();
     const wb = read(ab, { cellDates: true });
     const ws = wb.Sheets[wb.SheetNames[0]];
-    const items = utils.sheet_add_json(ws);
+    const items = utils.sheet_to_json(ws);
     let results = [];
     items.forEach((item, i) => {
         item.jk =
-            item.jk.length > 1
+            item.jk?.length > 1
                 ? item.jk
                 : item.jk.toLowerCase() == "l"
                   ? "Laki-laki"
                   : "Perempuan";
+        results.push(item);
     });
-    results.push(item);
     datas.value = results;
     loading.value = false;
 };
@@ -152,7 +152,7 @@ const kirim = async () => {
             </div>
         </template>
         <div class="card-">
-            <el-table :data="datas" v-loading="loading">
+            <el-table :data="datas" v-loading="loading" max-height="80vh">
                 <el-table-column label="No KK" prop="kk_id"></el-table-column>
                 <el-table-column label="No NIK" prop="nik"></el-table-column>
                 <el-table-column label="Nama" prop="nama"></el-table-column>
