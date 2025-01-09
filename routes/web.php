@@ -63,7 +63,6 @@ Route::prefix('')->middleware(VisitorTracker::class)->group(
                     ->name('front.produk');
                 Route::get('/detail/{id}', [ProdukController::class, 'detail'])
                     ->name('front.produk.detail');
-
             }
         );
         Route::prefix("wisata")->group(
@@ -231,6 +230,11 @@ Route::middleware('auth')->group(
                             ->name('dashboard.setting');
                     }
                 );
+
+                Route::prefix("user")->group(function () {
+                    Route::post('/store', [UserController::class, 'store'])->name('dashboard.user.store');
+                    Route::delete('/{id}', [UserController::class, 'destroy'])->name('dashboard.user.destroy');
+                });
             }
         )->middleware(['auth', 'verified']);
     }

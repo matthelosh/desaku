@@ -8,6 +8,7 @@ use App\Models\Rt;
 use App\Models\Rw;
 use App\Models\Warga;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
@@ -19,14 +20,12 @@ class WargaController extends Controller
             // dd($request->query('lembagaId'));
             if (!$request->query('lembagaId')) {
                 if ($request->query('q')) {
-                    $wargas = Warga::where('nama', 'LIKE', '%'.$request->query('q').'%')
+                    $wargas = Warga::where('nama', 'LIKE', '%' . $request->query('q') . '%')
                         ->with('rt', 'rw', 'dusun', 'jabatan')
                         ->paginate(20);
-
                 } else {
                     $wargas = Warga::with('rt', 'rw', 'dusun', 'jabatan')
                         ->paginate(20);
-
                 }
                 return Inertia::render(
                     'Belakang/Warga',
@@ -117,7 +116,7 @@ class WargaController extends Controller
                         'nama' => $data['nama'],
                         'jk' => $data['jk'],
                         'tempat_lahir' => $data['tempat_lahir'],
-                        'tanggal_lahir' => $data['tanggal_lahir'],
+                        'tanggal_lahir' => Carbon::parseFromLocale($data['tanggal_lahir'])->addDays(1)->format('Y-m-d'),
                         'agama' => $data['agama'],
                         'rt_id' => $data['rt_id'],
                         'pendidikan' => $data['pendidikan'],

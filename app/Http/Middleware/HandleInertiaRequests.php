@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Middleware;
+use Spatie\Permission\Models\Role;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -46,7 +47,7 @@ class HandleInertiaRequests extends Middleware
                 'online' => DB::table('sessions')->count(),
                 'total' => Visitor::all()->count(),
                 'today' => Visitor::whereDate('visited_at', '=', date('Y-m-d'))->get()->count()
-            ]
+            ],
         ];
     }
 }

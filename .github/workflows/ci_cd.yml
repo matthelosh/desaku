@@ -27,8 +27,8 @@ jobs:
             php artisan down
             git pull --ff
             composer install
-            php artisan migrate:refresh
-            php artisan db:seed
+            php artisan migrate
+            # php artisan db:seed
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
             npm install -g yarn
