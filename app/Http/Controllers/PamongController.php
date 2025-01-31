@@ -60,6 +60,18 @@ class PamongController extends Controller
                     'jabatan_id' => $data['jabatan_id']
                 ]
             );
+
+            return back()->with('message', 'Pamong Disimpan');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function destroy(Pamong $pamong, $id)
+    {
+        try {
+            $pamong::destroy($id);
+            return back()->with('message', 'Data Pamong dihapus');
         } catch (\Throwable $th) {
             throw $th;
         }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jabatan;
 use App\Models\User;
 use App\Models\Visitor;
 use App\Models\Warga;
@@ -27,7 +28,8 @@ class SettingController extends Controller
                         ->paginate(20),
                     'roles' => Role::with('permissions')->get(),
                     'permissions' => Permission::all(),
-                    'wargas' => Warga::all()
+                    'wargas' => Warga::all(),
+                    'jabatans' => Jabatan::all(),
                 ]
             );
         } catch (\Throwable $th) {

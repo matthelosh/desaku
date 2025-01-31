@@ -35,12 +35,14 @@ const onPejabatPicked = async (nik) => {
 };
 
 const simpan = async () => {
-    loading.value = true;
     router.post(
         route("dashboard.pamong.store"),
         { data: pamong.value },
         {
+            onStart: () => (loading.value = true),
             onSuccess: (page) => {
+                mode.value = "list";
+                pamong.value = {};
                 ElNotification({
                     title: "Info",
                     message: page.props.flash.message,
@@ -58,6 +60,7 @@ const simpan = async () => {
                     });
                 });
             },
+            onFinish: () => (loading.value = false),
         },
     );
 };
@@ -68,6 +71,33 @@ const editPamong = (item) => {
     selectedWarga.value = item.warga;
     mode.value = "form";
     showDetail.value = true;
+};
+
+const hapus = async (item) => {
+    router.delete(route("dashboard.pamong.destroy", { id: item.id }), {
+        onStart: () => (loading.value = true),
+        onSuccess: (page) => {
+            router.reload();
+            ElNotification({
+                title: "Info",
+                message: page.props.flash.message,
+                type: "success",
+            });
+            router.reload();
+        },
+        onError: (errs) => {
+            Object.keys(errs).forEach((k) => {
+                setTimeout(() => {
+                    ElNotification({
+                        title: "Error",
+                        message: errs[k],
+                        type: "error",
+                    });
+                });
+            });
+        },
+        onFinish: () => (loading.value = false),
+    });
 };
 
 onBeforeMount(() => {
@@ -99,7 +129,7 @@ onBeforeMount(() => {
                         </div>
                     </div>
                     <!-- {{ pamongs }} -->
-                    <el-table :data="pamongs" height="85vh">
+                    <el-table :data="page.props.data.pamongs" height="85vh">
                         <el-table-column
                             label="NIK"
                             prop="nik"
@@ -165,15 +195,22 @@ onBeforeMount(() => {
                             width="100"
                             align="center"
                         >
-                            <template #default="scope">
+                            <template #default="{ row }">
                                 <span class="flex gap-1 justify-center">
-                                    <el-button
-                                        circle
-                                        type="danger"
-                                        size="small"
+                                    <el-popconfirm
+                                        title="Hapus Pamong?"
+                                        @confirm="hapus(row)"
                                     >
-                                        <Icon icon="mdi:close" />
-                                    </el-button>
+                                        <template #reference>
+                                            <el-button
+                                                circle
+                                                type="danger"
+                                                size="small"
+                                            >
+                                                <Icon icon="mdi:close" />
+                                            </el-button>
+                                        </template>
+                                    </el-popconfirm>
                                 </span>
                             </template>
                         </el-table-column>
@@ -335,4 +372,3 @@ onBeforeMount(() => {
     transform: translateX(50px);
 }
 </style>
-

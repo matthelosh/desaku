@@ -11,20 +11,7 @@ class Pamong extends Model
 
     protected $fillable = [
         'nik',
-        'nip',
-        'gelar_depan',
-        'nama',
         'jabatan_id',
-        'foto',
-        'gelar_belakang',
-        'jk',
-        'tempat_lahir',
-        'tanggal_lahir',
-        'agama',
-        'alamat',
-        'hp',
-        'email',
-        'is_active'
     ];
 
     public function jabatan()

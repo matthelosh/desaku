@@ -15,4 +15,13 @@ class Jabatan extends Model
     {
         return $this->hasOne(Pamong::class);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($jabatan) {
+            $jabatan->pamong()->delete();
+        });
+    }
 }

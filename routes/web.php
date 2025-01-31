@@ -148,6 +148,8 @@ Route::middleware('auth')->group(
                             ->name('dashboard.pamong');
                         Route::post("/store", [PamongController::class, 'store'])
                             ->name('dashboard.pamong.store');
+                        Route::delete("/{id}", [PamongController::class, 'destroy'])
+                            ->name('dashboard.pamong.destroy');
                     }
                 );
                 Route::prefix('warga')->group(
@@ -228,6 +230,13 @@ Route::middleware('auth')->group(
                     function () {
                         Route::get("/", [SettingController::class, 'home'])
                             ->name('dashboard.setting');
+                    }
+                );
+
+                Route::prefix('jabatan')->group(
+                    function () {
+                        Route::post('/store', [JabatanController::class, 'store'])->name('jabatan.store');
+                        Route::delete('/{id}', [JabatanController::class, 'destroy'])->name('jabatan.destroy');
                     }
                 );
 

@@ -7,6 +7,9 @@ import DashLayout from "@/Layouts/DashLayout.vue";
 const Userpage = defineAsyncComponent(
     () => import("@/Components/Back/Setting/User.vue"),
 );
+const JabatanPage = defineAsyncComponent(
+    () => import("@/Components/Back/Setting/Jabatan.vue"),
+);
 
 const page = usePage();
 </script>
@@ -15,8 +18,11 @@ const page = usePage();
     <Head title="Pengaturan" />
     <DashLayout>
         <div class="grid md:grid-cols-3 grid-cols-1 gap-3">
-            <div class="col-span-1 md:col-span-3">
+            <div class="col-span-1 md:col-span-2">
                 <Userpage />
+            </div>
+            <div class="col-span-1 md:col-span-1">
+                <JabatanPage />
             </div>
             <div class="col-span-1 md:col-span-3">
                 <el-card>
