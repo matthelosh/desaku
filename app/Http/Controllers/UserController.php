@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Rt;
 
 class UserController extends Controller
 {
@@ -27,6 +28,32 @@ class UserController extends Controller
             $user->assignRole($request['role']);
 
             return back()->with('message', 'Pengguna Disimpan');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function createUserRT() {
+        try {
+            $rts = Rt::whereDoesntHave('user')->with('rw')->get();
+            foreach($rts as $rt)
+            {
+                $name = strtolower(str_replace(' ', '', $rt->nama)) . strtolower(str_replace(' ', '', $rt->rw->nama));
+                $user = User::updateOrCreate(
+                    [
+                        'name' => $name,
+                    ],
+                    [
+                        'email' => $name . '@samar.desa.id',
+                        'password' => Hash::make(strtolower(str_replace(' ', '', $rt->nama))),
+                        'warga_id' => $rt->ketua_id ?? null,
+                    ]
+                )->assignRole('rt');
+                $rt->user_id = $user->id;
+                $rt->save();
+            }
+
+            return back()->with('message', 'Pengguna RT berhasil dibuat');
         } catch (\Throwable $th) {
             throw $th;
         }

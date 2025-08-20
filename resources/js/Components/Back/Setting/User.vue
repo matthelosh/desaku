@@ -83,26 +83,58 @@ const hapus = async (id) => {
         },
     });
 };
+
+const createUserRT = async () => {
+    router.post(route("dashboard.user.rt.create"),
+    null,
+    {
+        onStart: () => loading.value = true,
+        onSuccess: () => {
+            router.reload({ only: ['users']})
+        },
+        onError: (errs) => {
+            Object.keys(errs).forEach((k) => {
+                setTimeout(() => {
+                    ElNotification({
+                        title: "Error",
+                        message: errs[k],
+                        type: "error",
+                    });
+                }, 500);
+            });
+        },
+        onFinish: () => loading.value = false,
+    })
+}
 </script>
 
 <template>
-    <el-card>
+    <el-card :loading="loading">
         <template #header>
             <div class="flex items-center justify-between">
                 <h3 class="text-lg">Data Pengguna</h3>
-                <el-button
-                    type="primary"
-                    size="small"
-                    class="flex"
-                    @click="formUser = true"
-                >
-                    <Icon icon="mdi:account-plus" />
-                    Tambah Baru
-                </el-button>
+                <div class="flex items-center justify-end gap-1">
+                    <el-button type="primary"
+                        size="small"
+                        class="flex"
+                        @click="createUserRT">
+                        <Icon icon="mdi:users" />
+                        Akun RT
+                    </el-button>
+                    <el-button
+                        type="primary"
+                        size="small"
+                        class="flex"
+                        @click="formUser = true"
+                    >
+                        <Icon icon="mdi:account-plus" />
+                        Tambah Baru
+                    </el-button>
+                </div>
             </div>
         </template>
         <template #default>
-            <el-table :data="page.props.users.data">
+            <el-table :data="page.props.users.data" v-loading="loading">
                 <el-table-column label="#" type="index" />
                 <el-table-column label="Username" prop="name" />
                 <el-table-column label="Email" prop="email" />

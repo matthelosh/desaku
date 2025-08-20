@@ -37,7 +37,7 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
-                'role' => $request->user() ? $request->user()->roles()->first() : null,
+                'role' => $request->user() ? $request->user()->getRoleNames()[0] : null,
                 'permissions' => $request->user() ? $request->user()->getPermissionsViaRoles() : null,
             ],
             'flash' => [
@@ -45,8 +45,10 @@ class HandleInertiaRequests extends Middleware
             ],
             'visitor' => [
                 'online' => DB::table('sessions')->count(),
-                'total' => Visitor::all()->count(),
-                'today' => Visitor::whereDate('visited_at', '=', date('Y-m-d'))->get()->count()
+                // Menggunakan Visitor::count() jauh lebih efisien daripada Visitor::all()->count()
+                'total' => Visitor::count(),
+                // Langsung memanggil count() pada query builder lebih efisien
+                'today' => Visitor::whereDate('visited_at', date('Y-m-d'))->count()
             ],
         ];
     }

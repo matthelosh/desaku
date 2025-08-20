@@ -3,60 +3,70 @@
         "label": "Dashboard",
         "url": "dashboard",
         "icon": "view-dashboard",
-        "children": []
+        "children": [],
+        "roles": ["admin", "kades", "carik", "ops", "rt"]
     },
     {
         "label": "Identitas Desa",
         "url": "dashboard.identitas",
         "icon": "account-card",
-        "children": []
+        "children": [],
+        "roles": ["admin", "kades", "carik", "ops"]
     },
     {
         "label": "Lembaga & Organisasi",
         "url": "dashboard.lembaga",
         "icon": "people",
-        "children": []
+        "children": [],
+        "roles": ["admin", "kades", "carik", "ops"]
     },
     {
         "label": "Data Perangkat",
         "url": "dashboard.pamong",
         "icon": "account-tie",
-        "children": []
+        "children": [],
+        "roles": ["admin", "kades", "carik", "ops"]
     },
     {
         "label": "Data Warga",
         "url": "dashboard.warga",
         "icon": "account-tie",
-        "children": []
+        "children": [],
+        "roles": ["admin", "kades", "carik", "ops", "rt"]
     },
     {
         "label": "Berita & Info",
         "url": "dashboard.post",
         "icon": "newspaper",
-        "children": []
+        "children": [],
+        "roles": ["admin", "kades", "carik", "ops"]
     },
     {
         "label": "Agenda Kegiatan",
         "url": "dashboard.agenda",
         "icon": "calendar",
-        "children": []
+        "children": [],
+        "roles": ["admin", "kades", "carik", "ops"]
     },
     {
         "label": "Bisnis & Usaha",
         "url": "dashboard.bisnis",
         "icon": "store-settings",
-        "children": []
+        "children": [],
+        "roles": ["admin", "kades", "carik", "ops", "rt"]
     },
     {
         "label": "Produk Unggulan",
         "url": "dashboard.produk",
         "icon": "shopping",
-        "children": []
+        "children": [],
+        "roles": ["admin", "kades", "carik", "ops", "rt"]
     },
     {
         "label": "Potensi Wisata",
         "url": "dashboard.wisata",
         "icon": "island",
-        "children": []
+        "children": [],
+        "roles": ["admin", "kades", "carik", "ops", "rt"]
     }
 ]

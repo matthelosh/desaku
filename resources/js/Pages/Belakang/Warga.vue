@@ -137,7 +137,7 @@ const nextPage = (pageNumber) => {
                             <template #default>
                                 <el-table
                                     :data="wargas.data"
-                                    max-height="75vh"
+                                    max-height="70vh"
                                     v-loading="progressIndicator"
                                     element-loading-text="`Tunggu sebentar`"
                                 >
@@ -149,7 +149,7 @@ const nextPage = (pageNumber) => {
                                     <el-table-column
                                         label="NIK"
                                         prop="nik"
-                                        width="150"
+                                        width="180"
                                     ></el-table-column>
                                     <el-table-column
                                         label="Nama"

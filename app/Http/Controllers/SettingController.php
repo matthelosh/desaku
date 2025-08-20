@@ -16,19 +16,22 @@ class SettingController extends Controller
     public function home(Request $request)
     {
         try {
-            $visitors = Visitor::all();
             return Inertia::render(
                 'Belakang/Setting',
                 [
-                    'visitors'  => $visitors,
+                    // Mengambil semua data pengunjung bisa sangat lambat jika tabelnya besar.
+                    // Jika hanya butuh jumlahnya, gunakan Visitor::count().
+                    // 'visitors'  => Visitor::count(),
                     'users'     => User::with('warga')
                         ->with(
                             'roles.permissions'
                         )
-                        ->paginate(20),
+                        ->paginate(15),
                     'roles' => Role::with('permissions')->get(),
                     'permissions' => Permission::all(),
-                    'wargas' => Warga::all(),
+                    // Mengambil semua data warga bisa menyebabkan masalah performa.
+                    // Sebaiknya ambil hanya kolom yang diperlukan, misalnya untuk dropdown.
+                    // 'wargas' => Warga::select('id', 'nik', 'nama')->get(),
                     'jabatans' => Jabatan::all(),
                 ]
             );

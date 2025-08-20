@@ -19,11 +19,16 @@ class Produk extends Model
         'berat',
         'link',
         'deskripsi',
-        'harga'
+        'harga',
+        'rt_id'
     ];
 
     public function produsen()
     {
         return $this->belongsTo(Business::class, 'business_id', 'id');
+    }
+
+    public function rt() {
+        return $this->belongsTo(Rt::class, 'rt_id', 'id');
     }
 }

@@ -3,7 +3,8 @@
         "label": "Beranda",
         "url": "front.home",
         "params": {},
-        "children": []
+        "children": [],
+        "roles": ["admin", "kades", "carik", "ops", "rt"]
     },
     {
         "label": "Profil Desa",
@@ -30,7 +31,8 @@
                     "category_id": "organisasi"
                 }
             }
-        ]
+        ],
+        "roles": ["admin", "kades", "carik", "ops"]
     },
     {
         "label": "Berita",
@@ -55,7 +57,8 @@
                     "category_id": "musyawarah"
                 }
             }
-        ]
+        ],
+        "roles": ["admin", "kades", "carik", "ops"]
     },
     {
         "label": "Produk Unggulan",

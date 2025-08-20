@@ -17,7 +17,9 @@ const foto = ref(null)
 const rts = ref([])
 const getData = () => {
     axios.get(route('dashboard.warga.alamat'))
-        .then(res => rts.value = res.data.rts)
+        .then(res => {
+            rts.value = page.props.auth.role == 'rt' ? res.data.rts.filter(rt => rt.nama == page.props.auth.user.name) : res.data.rts
+        })
 }
 
 const onFotoPicked = (e) => {
@@ -116,7 +118,7 @@ onBeforeMount(async () => {
                                     <el-col :span="12">
                                         <el-form-item label="RT" >
                                             <el-select v-model="warga.rt_id" placeholder="Pilih RT" filterable @change="onRtPicked">
-                                                <el-option v-for="rt in rts" :key="rt.id" :value="rt.id" :label="rt.nama"></el-option>
+                                                <el-option v-for="rt in rts" :key="rt.id" :value="rt.id" :label="rt.nama+'- RW '+rt.rw_id"></el-option>
                                             </el-select>
                                         </el-form-item>
                                     </el-col>

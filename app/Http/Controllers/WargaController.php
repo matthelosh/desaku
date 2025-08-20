@@ -18,13 +18,17 @@ class WargaController extends Controller
     {
         try {
             // dd($request->query('lembagaId'));
+            $isRt = $request->user()->hasRole('rt');
+            $rt = $isRt ? Rt::where('nama', $request->user()->name)->first() : null;
             if (!$request->query('lembagaId')) {
                 if ($request->query('q')) {
                     $wargas = Warga::where('nama', 'LIKE', '%' . $request->query('q') . '%')
                         ->with('rt', 'rw', 'dusun', 'jabatan')
+                        ->where('rt_id', 'LIKE', $isRt ? $rt->id : '%')
                         ->paginate(20);
                 } else {
                     $wargas = Warga::with('rt', 'rw', 'dusun', 'jabatan')
+                        ->where('rt_id', 'LIKE', $isRt ? $rt->id : '%')
                         ->paginate(20);
                 }
                 return Inertia::render(
@@ -40,7 +44,10 @@ class WargaController extends Controller
                     function ($q) use ($lembagaId) {
                         $q->where('lembagas.id', $lembagaId);
                     }
-                )->with('rt.rw.dusun')->get();
+                )
+                    ->where('rt_id', 'LIKE', $isRt ? $rt->id : '%')
+                    ->with('rt.rw.dusun')
+                    ->get();
 
                 return response()->json(['wargas' => $wargas]);
             }

@@ -25,7 +25,7 @@ const page = usePage();
                 <JabatanPage />
             </div>
             <div class="col-span-1 md:col-span-3">
-                <el-card>
+                <!-- <el-card>
                     <template #header>
                         <h3 class="text-lg">Data Pengunjung</h3>
                     </template>
@@ -47,7 +47,7 @@ const page = usePage();
                             prop="country"
                         ></el-table-column>
                     </el-table>
-                </el-card>
+                </el-card> -->
             </div>
             <!-- <div class="col-span-1"> -->
             <!--     <el-card> -->

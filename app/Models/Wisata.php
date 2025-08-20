@@ -18,6 +18,11 @@ class Wisata extends Model
         'harga_tiket',
         'buka',
         'tutup',
-        'is_active'
+        'is_active',
+        'rt_id'
     ];
+
+    public function rt() {
+        return $this->belongsTo(Rt::class, 'rt_id', 'id');
+    }
 }

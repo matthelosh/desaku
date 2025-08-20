@@ -242,6 +242,7 @@ Route::middleware('auth')->group(
 
                 Route::prefix("user")->group(function () {
                     Route::post('/store', [UserController::class, 'store'])->name('dashboard.user.store');
+                    Route::post('/rt/create', [UserController::class, 'createUserRT'])->name('dashboard.user.rt.create');
                     Route::delete('/{id}', [UserController::class, 'destroy'])->name('dashboard.user.destroy');
                 });
             }

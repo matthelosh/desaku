@@ -22,7 +22,7 @@ const rute = computed(() => route().current());
                     class="absolute w-full p-2 bg-sky-600 text-white uppercase bottom-0 bg-opacity-50 font-bold text-lg backdrop-blur-md text-center"
                 >
                     <Link :href="route('profile.edit')">
-                        {{ page.props.auth.user.name }}
+                        {{ page.props.auth.user.name }} || {{ page.props.auth.role }}
                     </Link>
                 </h1>
             </div>
@@ -30,6 +30,7 @@ const rute = computed(() => route().current());
                 <el-divider>MENU</el-divider>
                 <li v-for="(menu, m) in menus" :key="m">
                     <Link
+                        v-if="menu.roles.includes(page.props.auth.role)"
                         :href="route(menu.url)"
                         :class="{ active: rute === menu.url }"
                         class="flex gap-1 items-center py-4 px-2 hover:text-sky-800 transition-all duration-200 ease-in-out hover:bg-sky-100 text-slate-900"
@@ -38,13 +39,13 @@ const rute = computed(() => route().current());
                         {{ menu.label }}
                     </Link>
                 </li>
-                <el-divider>
+                <el-divider v-if="page.props.auth.role == 'admin'">
                     <div class="flex items-center gap-2">
                         <Icon icon="mdi:tools" />
                         SETTING
                     </div>
                 </el-divider>
-                <li>
+                <li v-if="page.props.auth.role == 'admin'">
                     <Link
                         :href="route('dashboard.setting')"
                         :class="{ active: rute === 'dashboard.setting' }"

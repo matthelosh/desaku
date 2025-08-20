@@ -18,7 +18,8 @@ class Post extends Model
         'cover',
         'content',
         'user_id',
-        'status'
+        'status',
+        'rt_id'
     ];
 
     public function author()
@@ -34,5 +35,9 @@ class Post extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'name');
+    }
+
+    public function rt() {
+        return $this->belongsTo(Rt::class, 'rt_id', 'id');
     }
 }

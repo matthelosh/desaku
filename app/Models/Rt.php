@@ -14,6 +14,7 @@ class Rt extends Model
         'nama',
         'ketua_id',
         'rw_id',
+        'user_id'
     ];
 
 
@@ -35,5 +36,9 @@ class Rt extends Model
     function ketua()
     {
         return $this->belongsTo(Warga::class, 'ketua_id', 'id');
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

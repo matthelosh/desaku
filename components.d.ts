@@ -10,7 +10,6 @@ declare module 'vue' {
     ElAffix: typeof import('element-plus/es')['ElAffix']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAside: typeof import('element-plus/es')['ElAside']
-    ElAutocomplete: typeof import('element-plus/es')['ElAutocomplete']
     ElBacktop: typeof import('element-plus/es')['ElBacktop']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
