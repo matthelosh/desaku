@@ -39,13 +39,13 @@ const rute = computed(() => route().current());
                         {{ menu.label }}
                     </Link>
                 </li>
-                <el-divider v-if="page.props.auth.role == 'admin'">
+                <el-divider v-if="page.props.auth.role == 'admin' || page.props.auth.role == 'ops'">
                     <div class="flex items-center gap-2">
                         <Icon icon="mdi:tools" />
                         SETTING
                     </div>
                 </el-divider>
-                <li v-if="page.props.auth.role == 'admin'">
+                <li v-if="page.props.auth.role == 'admin' || page.props.auth.role == 'ops'">
                     <Link
                         :href="route('dashboard.setting')"
                         :class="{ active: rute === 'dashboard.setting' }"

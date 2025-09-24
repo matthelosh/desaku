@@ -10,7 +10,7 @@ use App\Models\Rt;
 
 class UserController extends Controller
 {
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
         try {
             $user = User::updateOrCreate(
