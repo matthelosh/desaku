@@ -55,7 +55,7 @@ class UserController extends Controller
 
             return back()->with('message', 'Pengguna RT berhasil dibuat');
         } catch (\Throwable $th) {
-            throw $th;
+            return back()->withErrors('errors', $th->getMessage());
         }
     }
 
